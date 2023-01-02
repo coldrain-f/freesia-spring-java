@@ -23,8 +23,8 @@ public class BookApiController {
      * 단어장 등록
      */
     @PostMapping
-    public Long create(final BookCreateRequest bookCreateRequest) {
-        return bookService.create(bookCreateRequest);
+    public Long create(final BookCreateRequest request) {
+        return bookService.create(request);
     }
 
     /**

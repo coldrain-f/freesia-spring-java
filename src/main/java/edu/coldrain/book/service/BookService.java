@@ -15,18 +15,18 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
-    public Long create(final BookCreateRequest bookCreateRequest) {
-        final BookEntity bookEntity = bookCreateRequest.toEntity();
+    public Long create(final BookCreateRequest request) {
+        final BookEntity bookEntity = request.toEntity();
         return bookRepository.save(bookEntity).getId();
     }
 
-    public void update(final BookUpdateRequest bookUpdateRequest, final Long bookId) {
+    public void update(final BookUpdateRequest request, final Long bookId) {
         final BookEntity bookEntity = this.findById(bookId);
 
-        bookEntity.changeName(bookUpdateRequest.getName());
-        bookEntity.changeContent(bookUpdateRequest.getContent());
-        bookEntity.changeLanguage(bookUpdateRequest.getLanguage());
-        bookEntity.changeShareStatus(bookUpdateRequest.getShareStatus());
+        bookEntity.changeName(request.getName());
+        bookEntity.changeContent(request.getContent());
+        bookEntity.changeLanguage(request.getLanguage());
+        bookEntity.changeShareStatus(request.getShareStatus());
     }
 
     public void delete(final Long bookId) {
