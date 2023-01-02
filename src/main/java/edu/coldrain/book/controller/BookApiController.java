@@ -1,7 +1,9 @@
 package edu.coldrain.book.controller;
 
 import edu.coldrain.book.dto.BookCreateRequest;
+import edu.coldrain.book.dto.BookDetailResponse;
 import edu.coldrain.book.dto.BookUpdateRequest;
+import edu.coldrain.book.entity.BookEntity;
 import edu.coldrain.book.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +30,7 @@ public class BookApiController {
     public void update(final @PathVariable("id") Long bookId, final BookUpdateRequest request) {
         bookService.update(request, bookId);
     }
+
     /**
      * 단어장 삭제
      */
@@ -40,8 +43,14 @@ public class BookApiController {
      * 단어장 상세 조회
      */
     @GetMapping("/{id}")
-    public void findOne(@PathVariable("id") Long bookId) {
-
+    public BookDetailResponse findOne(@PathVariable("id") Long bookId) {
+        final BookEntity bookEntity = bookService.findById(bookId);
+        return BookDetailResponse.builder()
+                .name(bookEntity.getName())
+                .content(bookEntity.getContent())
+                .language(bookEntity.getLanguage())
+                .shareStatus(bookEntity.getShareStatus())
+                .build();
     }
 
     /**
