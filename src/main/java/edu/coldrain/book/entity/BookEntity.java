@@ -34,4 +34,20 @@ public class BookEntity {
         this.language = language;
         this.shareStatus = shareStatus;
     }
+
+    public void changeName(final String name) {
+        this.name = name;
+    }
+
+    public void changeContent(final String content) {
+        this.content = content;
+    }
+
+    public void changeLanguage(final String language) {
+        this.language = language;
+    }
+
+    public void changeShareStatus(final String shareStatus) {
+        this.shareStatus = shareStatus;
+    }
 }

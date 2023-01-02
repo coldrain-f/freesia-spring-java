@@ -1,6 +1,7 @@
 package edu.coldrain.book.controller;
 
 import edu.coldrain.book.dto.BookCreateRequest;
+import edu.coldrain.book.dto.BookUpdateRequest;
 import edu.coldrain.book.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,8 @@ public class BookApiController {
      * 단어장 수정
      */
     @PatchMapping("/{id}")
-    public void update(@PathVariable("id") Long bookId) {
-
+    public void update(final @PathVariable("id") Long bookId, final BookUpdateRequest request) {
+        bookService.update(request, bookId);
     }
     /**
      * 단어장 삭제
