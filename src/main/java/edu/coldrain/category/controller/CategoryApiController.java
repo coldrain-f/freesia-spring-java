@@ -34,7 +34,7 @@ public class CategoryApiController {
      * 카테고리 삭제
      */
     public void delete(final @PathVariable("id") Long categoryId) {
-
+        categoryService.delete(categoryId);
     }
 
     /**

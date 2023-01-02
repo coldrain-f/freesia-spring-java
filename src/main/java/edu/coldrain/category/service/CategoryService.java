@@ -27,4 +27,13 @@ public class CategoryService {
         return categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new IllegalArgumentException("Category not found."));
     }
+
+    public void delete(final Long categoryId) {
+        final CategoryEntity categoryEntity = this.findById((categoryId));
+        final Boolean isDeleted = categoryEntity.getIsDeleted();
+        if (isDeleted) {
+            throw new IllegalArgumentException("Already deleted category.");
+        }
+        categoryEntity.changeIsDeleted(true);
+    }
 }

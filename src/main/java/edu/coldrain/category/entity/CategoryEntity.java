@@ -21,6 +21,9 @@ public class CategoryEntity {
     @Column()
     private Long completeCount;
 
+    @Column()
+    private Boolean isDeleted;
+
     @Builder
     public CategoryEntity(final String name, final Long completeCount) {
         this.name = name;
@@ -33,6 +36,10 @@ public class CategoryEntity {
 
     public void changeCompleteCount(final Long completeCount) {
         this.completeCount = completeCount;
+    }
+
+    public void changeIsDeleted(final Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }
 
