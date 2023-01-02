@@ -19,8 +19,7 @@ public class BookService {
     }
 
     public void update(final BookUpdateRequest bookUpdateRequest, final Long bookId) {
-        final BookEntity bookEntity = bookRepository.findById(bookId)
-                .orElseThrow(() -> new IllegalArgumentException("book not found"));
+        final BookEntity bookEntity = this.findById(bookId);
 
         bookEntity.changeName(bookUpdateRequest.getName());
         bookEntity.changeContent(bookUpdateRequest.getContent());
@@ -29,13 +28,17 @@ public class BookService {
     }
 
     public void delete(final Long bookId) {
-        final BookEntity bookEntity = bookRepository.findById(bookId)
-                .orElseThrow(() -> new IllegalArgumentException("book not found"));
+        final BookEntity bookEntity = this.findById(bookId);
 
         final Boolean isDeleted = bookEntity.getIsDeleted();
         if (isDeleted) {
             throw new IllegalArgumentException("Already deleted book.");
         }
         bookEntity.changeIsDeleted(false);
+    }
+
+    public BookEntity findById(final Long bookId) {
+        return bookRepository.findById(bookId)
+                .orElseThrow(() -> new IllegalArgumentException("Book not found."));
     }
 }
