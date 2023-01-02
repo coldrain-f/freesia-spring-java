@@ -1,6 +1,7 @@
 package edu.coldrain.category.service;
 
 import edu.coldrain.category.dto.CategoryCreateRequest;
+import edu.coldrain.category.dto.CategoryUpdateRequest;
 import edu.coldrain.category.entity.CategoryEntity;
 import edu.coldrain.category.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,9 @@ public class CategoryService {
         return categoryRepository.save(categoryEntity).getId();
     }
 
-    public void update(final Long categoryId) {
-        
+    public void update(final CategoryUpdateRequest request, final Long categoryId) {
+        final CategoryEntity categoryEntity = this.findById(categoryId);
+        categoryEntity.changeName(request.getName());
     }
 
     public CategoryEntity findById(final Long categoryId) {
