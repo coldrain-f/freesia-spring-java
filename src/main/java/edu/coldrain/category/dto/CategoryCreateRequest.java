@@ -9,18 +9,15 @@ public class CategoryCreateRequest {
 
     private final String name;
 
-    private final Long completeCount;
-
     @Builder
-    public CategoryCreateRequest(final String name, final Long completeCount) {
+    public CategoryCreateRequest(final String name) {
         this.name = name;
-        this.completeCount = completeCount;
     }
 
     public CategoryEntity toEntity() {
         return CategoryEntity.builder()
                 .name(this.name)
-                .completeCount(this.completeCount)
+                .completeCount(0L)
                 .build();
     }
 }
