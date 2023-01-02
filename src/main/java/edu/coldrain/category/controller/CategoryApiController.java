@@ -1,6 +1,7 @@
 package edu.coldrain.category.controller;
 
 import edu.coldrain.category.dto.CategoryCreateRequest;
+import edu.coldrain.category.dto.CategoryUpdateRequest;
 import edu.coldrain.category.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -25,8 +26,8 @@ public class CategoryApiController {
     /**
      * 카테고리 수정
      */
-    public void update(final @PathVariable("id") Long categoryId) {
-        categoryService.update(categoryId);
+    public void update(final @PathVariable("id") Long categoryId, final CategoryUpdateRequest request) {
+        categoryService.update(request, categoryId);
     }
 
     /**
