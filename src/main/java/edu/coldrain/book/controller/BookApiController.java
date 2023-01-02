@@ -1,17 +1,23 @@
 package edu.coldrain.book.controller;
 
+import edu.coldrain.book.dto.BookCreateRequest;
+import edu.coldrain.book.service.BookService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/books")
 public class BookApiController {
+
+    private final BookService bookService;
 
     /**
      * 단어장 등록
      */
     @PostMapping
-    public void create() {
-
+    public Long create(final BookCreateRequest bookCreateRequest) {
+        return bookService.create(bookCreateRequest);
     }
 
     /**
