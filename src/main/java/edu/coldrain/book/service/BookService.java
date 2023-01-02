@@ -5,6 +5,8 @@ import edu.coldrain.book.dto.BookUpdateRequest;
 import edu.coldrain.book.entity.BookEntity;
 import edu.coldrain.book.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,5 +42,9 @@ public class BookService {
     public BookEntity findById(final Long bookId) {
         return bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found."));
+    }
+
+    public Page<BookEntity> findAll(final Pageable pageable) {
+        return bookRepository.findAll(pageable);
     }
 }
