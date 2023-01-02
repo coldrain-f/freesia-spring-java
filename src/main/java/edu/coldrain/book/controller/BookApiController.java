@@ -8,6 +8,8 @@ import edu.coldrain.book.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/books")
@@ -34,7 +36,7 @@ public class BookApiController {
      * 단어장 삭제
      */
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long bookId) {
+    public void delete(final @PathVariable("id") Long bookId) {
         bookService.delete(bookId);
     }
 
@@ -42,7 +44,7 @@ public class BookApiController {
      * 단어장 상세 조회
      */
     @GetMapping("/{id}")
-    public BookDetailResponse findOne(@PathVariable("id") Long bookId) {
+    public BookDetailResponse findOne(final @PathVariable("id") Long bookId) {
         final BookEntity bookEntity = bookService.findById(bookId);
         return BookDetailResponse.builder()
                 .name(bookEntity.getName())
