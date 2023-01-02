@@ -27,6 +27,9 @@ public class BookEntity {
     @Column()
     private String shareStatus;
 
+    @Column()
+    private Boolean isDeleted;
+
     @Builder
     public BookEntity(final String name, final String content, final String language, final String shareStatus) {
         this.name = name;
@@ -49,5 +52,9 @@ public class BookEntity {
 
     public void changeShareStatus(final String shareStatus) {
         this.shareStatus = shareStatus;
+    }
+
+    public void changeIsDeleted(final Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

@@ -33,7 +33,7 @@ public class BookApiController {
      */
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long bookId) {
-
+        bookService.delete(bookId);
     }
 
     /**

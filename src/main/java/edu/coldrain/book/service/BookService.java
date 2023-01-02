@@ -27,4 +27,15 @@ public class BookService {
         bookEntity.changeLanguage(bookUpdateRequest.getLanguage());
         bookEntity.changeShareStatus(bookUpdateRequest.getShareStatus());
     }
+
+    public void delete(final Long bookId) {
+        final BookEntity bookEntity = bookRepository.findById(bookId)
+                .orElseThrow(() -> new IllegalArgumentException("book not found"));
+
+        final Boolean isDeleted = bookEntity.getIsDeleted();
+        if (isDeleted) {
+            throw new IllegalArgumentException("Already deleted book.");
+        }
+        bookEntity.changeIsDeleted(false);
+    }
 }
