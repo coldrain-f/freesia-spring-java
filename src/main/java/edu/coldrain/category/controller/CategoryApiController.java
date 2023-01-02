@@ -26,7 +26,7 @@ public class CategoryApiController {
      * 카테고리 수정
      */
     public void update(final @PathVariable("id") Long categoryId) {
-
+        categoryService.update(categoryId);
     }
 
     /**

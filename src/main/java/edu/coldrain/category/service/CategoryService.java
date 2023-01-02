@@ -16,4 +16,13 @@ public class CategoryService {
         final CategoryEntity categoryEntity = request.toEntity();
         return categoryRepository.save(categoryEntity).getId();
     }
+
+    public void update(final Long categoryId) {
+        
+    }
+
+    public CategoryEntity findById(final Long categoryId) {
+        return categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new IllegalArgumentException("Category not found."));
+    }
 }
