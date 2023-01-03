@@ -5,6 +5,8 @@ import edu.coldrain.category.dto.CategoryUpdateRequest;
 import edu.coldrain.category.entity.CategoryEntity;
 import edu.coldrain.category.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,5 +37,9 @@ public class CategoryService {
             throw new IllegalArgumentException("Already deleted category.");
         }
         categoryEntity.changeIsDeleted(true);
+    }
+
+    public Page<CategoryEntity> findAll(final Pageable pageable) {
+        return categoryRepository.findAll(pageable);
     }
 }
