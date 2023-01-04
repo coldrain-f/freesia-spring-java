@@ -1,5 +1,6 @@
 package edu.coldrain.word.controller;
 
+import edu.coldrain.word.service.WordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/words")
 public class WordApiController {
+
+    private final WordService wordService;
 
     /**
      * 단어 등록
