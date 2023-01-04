@@ -1,5 +1,6 @@
 package edu.coldrain.word.controller;
 
+import edu.coldrain.word.dto.WordCreateRequest;
 import edu.coldrain.word.service.WordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -18,8 +19,8 @@ public class WordApiController {
      * 단어 등록
      */
     @PostMapping
-    public void create() {
-
+    public Long create(final WordCreateRequest request) {
+        return wordService.create(request);
     }
 
     /**
