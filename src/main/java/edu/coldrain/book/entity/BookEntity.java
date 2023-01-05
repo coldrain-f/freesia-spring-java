@@ -37,6 +37,7 @@ public class BookEntity {
         this.content = content;
         this.language = language;
         this.shareStatus = shareStatus;
+        this.isDeleted = false;
     }
 
     public void changeName(final String name) {
