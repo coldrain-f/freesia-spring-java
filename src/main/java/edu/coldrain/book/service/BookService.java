@@ -41,12 +41,17 @@ public class BookService {
         if (isDeleted) {
             throw new IllegalArgumentException("Already deleted book.");
         }
-        bookEntity.changeIsDeleted(false);
+        bookEntity.changeIsDeleted(true);
     }
 
     public BookEntity findById(final Long bookId) {
-        return bookRepository.findById(bookId)
+        final BookEntity bookEntity = bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found."));
+        final Boolean isDeleted = bookEntity.getIsDeleted();
+        if (isDeleted) {
+            throw new IllegalArgumentException("Already deleted book.");
+        }
+        return bookEntity;
     }
 
     public Page<BookEntity> findAll(final Pageable pageable) {
