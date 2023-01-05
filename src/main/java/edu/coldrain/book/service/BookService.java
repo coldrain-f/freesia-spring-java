@@ -5,12 +5,15 @@ import edu.coldrain.book.dto.BookUpdateRequest;
 import edu.coldrain.book.entity.BookEntity;
 import edu.coldrain.book.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BookService {
 
     private final BookRepository bookRepository;
@@ -20,6 +23,7 @@ public class BookService {
         return bookRepository.save(bookEntity).getId();
     }
 
+    @Transactional
     public void update(final BookUpdateRequest request, final Long bookId) {
         final BookEntity bookEntity = this.findById(bookId);
 
@@ -29,6 +33,7 @@ public class BookService {
         bookEntity.changeShareStatus(request.getShareStatus());
     }
 
+    @Transactional
     public void delete(final Long bookId) {
         final BookEntity bookEntity = this.findById(bookId);
 
