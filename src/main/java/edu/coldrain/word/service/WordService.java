@@ -5,9 +5,9 @@ import edu.coldrain.word.dto.WordUpdateRequest;
 import edu.coldrain.word.entity.WordEntity;
 import edu.coldrain.word.repository.WordRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.awt.print.Pageable;
 
 @Service
 @RequiredArgsConstructor
@@ -34,8 +34,8 @@ public class WordService {
         wordEntity.changeIsDeleted(true);
     }
 
-    public void findAll(final Pageable pageable) {
-
+    public Page<WordEntity> findAll(final Pageable pageable) {
+        return wordRepository.findAll(pageable);
     }
 
     public WordEntity findById(final Long wordId) {

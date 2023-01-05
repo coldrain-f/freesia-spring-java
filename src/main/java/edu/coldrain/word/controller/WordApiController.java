@@ -1,9 +1,11 @@
 package edu.coldrain.word.controller;
 
 import edu.coldrain.word.dto.WordCreateRequest;
+import edu.coldrain.word.dto.WordDetailResponse;
 import edu.coldrain.word.dto.WordUpdateRequest;
 import edu.coldrain.word.service.WordService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -44,8 +46,11 @@ public class WordApiController {
      * 단어 목록 조회
      */
     @GetMapping
-    public void findAll(
+    public Page<WordDetailResponse> findAll(
             @PageableDefault(size = 5, sort = "name", direction = Sort.Direction.DESC) final Pageable pageable) {
-
+        return wordService.findAll(pageable)
+                .map((wordEntity) -> WordDetailResponse.builder()
+                        .name(wordEntity.getName())
+                        .build());
     }
 }
