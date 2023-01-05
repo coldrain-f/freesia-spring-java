@@ -1,6 +1,7 @@
 package edu.coldrain.word.controller;
 
 import edu.coldrain.word.dto.WordCreateRequest;
+import edu.coldrain.word.dto.WordUpdateRequest;
 import edu.coldrain.word.service.WordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -27,8 +28,8 @@ public class WordApiController {
      * 단어 수정
      */
     @PatchMapping("/{id}")
-    public void update(@PathVariable("id") final Long wordId) {
-
+    public void update(@PathVariable("id") final Long wordId, final WordUpdateRequest request) {
+        wordService.update(wordId, request);
     }
 
     /**

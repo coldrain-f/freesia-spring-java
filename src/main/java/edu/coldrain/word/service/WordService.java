@@ -21,7 +21,8 @@ public class WordService {
     }
 
     public void update(final Long wordId, final WordUpdateRequest request) {
-
+        final WordEntity wordEntity = this.findById(wordId);
+        wordEntity.changeName(request.getName());
     }
 
     public void delete(final Long wordId) {
