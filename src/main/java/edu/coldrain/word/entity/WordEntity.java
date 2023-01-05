@@ -1,5 +1,6 @@
 package edu.coldrain.word.entity;
 
+import edu.coldrain.category.entity.CategoryEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -13,7 +14,12 @@ public class WordEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "WORD_ID")
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "CATEGORY_ID")
+    private CategoryEntity categoryEntity;
 
     @Column()
     private String name;
