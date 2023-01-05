@@ -1,6 +1,7 @@
 package edu.coldrain.word.service;
 
 import edu.coldrain.word.dto.WordCreateRequest;
+import edu.coldrain.word.dto.WordUpdateRequest;
 import edu.coldrain.word.entity.WordEntity;
 import edu.coldrain.word.repository.WordRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class WordService {
         return wordRepository.save(wordEntity).getId();
     }
 
-    public void update(final Long wordId) {
+    public void update(final Long wordId, final WordUpdateRequest request) {
 
     }
 
@@ -29,5 +30,10 @@ public class WordService {
 
     public void findAll(final Pageable pageable) {
 
+    }
+
+    public WordEntity findById(final Long wordId) {
+        return wordRepository.findById(wordId)
+                .orElseThrow(() -> new IllegalArgumentException("Word not found."));
     }
 }
