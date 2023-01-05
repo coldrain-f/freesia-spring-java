@@ -15,16 +15,23 @@ public class WordEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-
     @Column()
     private String name;
+
+    @Column()
+    private Boolean isDeleted;
 
     @Builder
     public WordEntity(final String name) {
         this.name = name;
+        this.isDeleted = false;
     }
 
     public void changeName(final String name) {
         this.name = name;
+    }
+
+    public void changeIsDeleted(final Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

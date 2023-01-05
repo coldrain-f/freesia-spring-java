@@ -37,7 +37,7 @@ public class WordApiController {
      */
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") final Long wordId) {
-
+        wordService.delete(wordId);
     }
 
     /**

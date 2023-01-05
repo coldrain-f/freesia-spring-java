@@ -26,7 +26,12 @@ public class WordService {
     }
 
     public void delete(final Long wordId) {
-
+        final WordEntity wordEntity = this.findById(wordId);
+        final Boolean isDeleted = wordEntity.getIsDeleted();
+        if (isDeleted) {
+            throw new IllegalArgumentException("Already deleted word.");
+        }
+        wordEntity.changeIsDeleted(true);
     }
 
     public void findAll(final Pageable pageable) {
