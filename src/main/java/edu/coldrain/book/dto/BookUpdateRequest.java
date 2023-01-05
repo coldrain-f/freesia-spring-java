@@ -1,9 +1,10 @@
 package edu.coldrain.book.dto;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class BookUpdateRequest {
 
     private final String name;

@@ -6,6 +6,7 @@ import edu.coldrain.book.dto.BookUpdateRequest;
 import edu.coldrain.book.entity.BookEntity;
 import edu.coldrain.book.service.BookService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 @RequestMapping("/books")
 public class BookApiController {
 
@@ -24,6 +26,7 @@ public class BookApiController {
      */
     @PostMapping
     public Long create(final BookCreateRequest request) {
+        log.info("request = {}", request);
         return bookService.create(request);
     }
 
