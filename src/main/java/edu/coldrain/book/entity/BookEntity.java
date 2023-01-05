@@ -13,6 +13,7 @@ public class BookEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "BOOK_ID")
     private Long id;
 
     @Column()

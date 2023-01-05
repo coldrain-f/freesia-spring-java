@@ -1,5 +1,6 @@
 package edu.coldrain.category.entity;
 
+import edu.coldrain.book.entity.BookEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -13,7 +14,12 @@ public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "CATEGORY_ID")
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "BOOK_ID")
+    private BookEntity bookEntity;
 
     @Column()
     private String name;
