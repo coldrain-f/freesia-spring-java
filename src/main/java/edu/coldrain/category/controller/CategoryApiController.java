@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,14 +22,14 @@ public class CategoryApiController {
     /**
      * 카테고리 등록
      */
-    public Long create(final CategoryCreateRequest request) {
+    public Long create(@RequestBody final CategoryCreateRequest request) {
         return categoryService.create(request);
     }
 
     /**
      * 카테고리 수정
      */
-    public void update(final @PathVariable("id") Long categoryId, final CategoryUpdateRequest request) {
+    public void update(final @PathVariable("id") Long categoryId, @RequestBody final CategoryUpdateRequest request) {
         categoryService.update(request, categoryId);
     }
 

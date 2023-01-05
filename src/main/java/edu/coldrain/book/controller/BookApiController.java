@@ -25,7 +25,7 @@ public class BookApiController {
      * 단어장 등록
      */
     @PostMapping
-    public Long create(final BookCreateRequest request) {
+    public Long create(@RequestBody final BookCreateRequest request) {
         log.info("request = {}", request);
         return bookService.create(request);
     }
@@ -34,7 +34,7 @@ public class BookApiController {
      * 단어장 수정
      */
     @PatchMapping("/{id}")
-    public void update(final @PathVariable("id") Long bookId, final BookUpdateRequest request) {
+    public void update(final @PathVariable("id") Long bookId, @RequestBody final BookUpdateRequest request) {
         bookService.update(request, bookId);
     }
 

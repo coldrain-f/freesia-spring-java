@@ -22,7 +22,7 @@ public class WordApiController {
      * 단어 등록
      */
     @PostMapping
-    public Long create(final WordCreateRequest request) {
+    public Long create(@RequestBody final WordCreateRequest request) {
         return wordService.create(request);
     }
 
@@ -30,7 +30,7 @@ public class WordApiController {
      * 단어 수정
      */
     @PatchMapping("/{id}")
-    public void update(@PathVariable("id") final Long wordId, final WordUpdateRequest request) {
+    public void update(@PathVariable("id") final Long wordId, @RequestBody final WordUpdateRequest request) {
         wordService.update(wordId, request);
     }
 
