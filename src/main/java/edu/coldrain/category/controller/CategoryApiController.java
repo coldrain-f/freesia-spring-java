@@ -19,7 +19,6 @@ public class CategoryApiController {
 
     /**
      * 카테고리 등록
-     * 1번 단어장에 카테고리 등록
      */
     @PostMapping("/books/{id}/categories")
     public Long create(@PathVariable("id") final Long bookId,
@@ -30,6 +29,7 @@ public class CategoryApiController {
     /**
      * 카테고리 수정
      */
+    @PatchMapping("/categories/{id}")
     public void update(final @PathVariable("id") Long categoryId, @RequestBody final CategoryUpdateRequest request) {
         categoryService.update(request, categoryId);
     }

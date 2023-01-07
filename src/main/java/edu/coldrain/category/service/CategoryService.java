@@ -30,6 +30,7 @@ public class CategoryService {
         return savedCategory.getId();
     }
 
+    @Transactional
     public void update(final CategoryUpdateRequest request, final Long categoryId) {
         final CategoryEntity categoryEntity = this.findById(categoryId);
         categoryEntity.changeName(request.getName());
