@@ -36,6 +36,10 @@ public class CategoryEntity {
         this.completeCount = completeCount;
     }
 
+    public void changeBookEntity(final BookEntity bookEntity) {
+        this.bookEntity = bookEntity;
+    }
+
     public void changeName(final String name) {
         this.name = name;
     }

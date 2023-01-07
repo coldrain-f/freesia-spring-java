@@ -55,6 +55,7 @@ public class BookService {
     }
 
     public Page<BookEntity> findAll(final Pageable pageable) {
+        // Todo: 삭제된 단어장은 제외하고 조회하도록 변경 필요
         return bookRepository.findAll(pageable);
     }
 }

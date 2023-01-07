@@ -9,9 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,9 +19,12 @@ public class CategoryApiController {
 
     /**
      * 카테고리 등록
+     * 1번 단어장에 카테고리 등록
      */
-    public Long create(@RequestBody final CategoryCreateRequest request) {
-        return categoryService.create(request);
+    @PostMapping("/books/{id}/categories")
+    public Long create(@PathVariable("id") final Long bookId,
+                       @RequestBody final CategoryCreateRequest request) {
+        return categoryService.create(bookId, request);
     }
 
     /**
