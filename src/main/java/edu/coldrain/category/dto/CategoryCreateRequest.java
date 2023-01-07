@@ -1,13 +1,14 @@
 package edu.coldrain.category.dto;
 
 import edu.coldrain.category.entity.CategoryEntity;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
+@ToString
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CategoryCreateRequest {
 
-    private final String name;
+    private String name;
 
     @Builder
     public CategoryCreateRequest(final String name) {

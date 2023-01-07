@@ -5,6 +5,7 @@ import edu.coldrain.category.dto.CategoryDetailResponse;
 import edu.coldrain.category.dto.CategoryUpdateRequest;
 import edu.coldrain.category.service.CategoryService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -12,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Slf4j
 @RequiredArgsConstructor
 public class CategoryApiController {
 

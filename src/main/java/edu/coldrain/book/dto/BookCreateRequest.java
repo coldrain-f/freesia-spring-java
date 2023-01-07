@@ -24,8 +24,8 @@ public class BookCreateRequest {
         return BookEntity.builder()
                 .name(this.name)
                 .content(this.content)
-                .language(this.language).
-                shareStatus(this.shareStatus)
+                .language(this.language)
+                .shareStatus(this.shareStatus)
                 .build();
     }
 }
