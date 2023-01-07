@@ -41,6 +41,7 @@ public class CategoryService {
                 .orElseThrow(() -> new IllegalArgumentException("Category not found."));
     }
 
+    @Transactional
     public void delete(final Long categoryId) {
         final CategoryEntity categoryEntity = this.findById((categoryId));
         final Boolean isDeleted = categoryEntity.getIsDeleted();
