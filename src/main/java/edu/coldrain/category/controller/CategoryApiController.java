@@ -45,6 +45,7 @@ public class CategoryApiController {
     /**
      * 카테고리 목록 조회
      */
+    @GetMapping("/categories")
     public Page<CategoryDetailResponse> findAll(
             @PageableDefault(size = 5, sort = "name", direction = Sort.Direction.DESC) final Pageable pageable) {
         return categoryService.findAll(pageable)
