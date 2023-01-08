@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/words")
 public class WordApiController {
 
     private final WordService wordService;
@@ -21,9 +20,10 @@ public class WordApiController {
     /**
      * 단어 등록
      */
-    @PostMapping
-    public Long create(@RequestBody final WordCreateRequest request) {
-        return wordService.create(request);
+    @PostMapping("/categories/{id}/words")
+    public Long create(@PathVariable("id") final Long categoryId,
+                       @RequestBody final WordCreateRequest request) {
+        return wordService.create(request, categoryId);
     }
 
     /**

@@ -33,6 +33,9 @@ public class WordEntity {
         this.isDeleted = false;
     }
 
+    public void changeCategoryEntity(final CategoryEntity categoryEntity) {
+        this.categoryEntity = categoryEntity;
+    }
     public void changeName(final String name) {
         this.name = name;
     }
