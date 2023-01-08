@@ -29,7 +29,7 @@ public class WordApiController {
     /**
      * 단어 수정
      */
-    @PatchMapping("/{id}")
+    @PatchMapping("/words/{id}")
     public void update(@PathVariable("id") final Long wordId, @RequestBody final WordUpdateRequest request) {
         wordService.update(wordId, request);
     }
@@ -37,7 +37,7 @@ public class WordApiController {
     /**
      * 단어 삭제
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/words/{id}")
     public void delete(@PathVariable("id") final Long wordId) {
         wordService.delete(wordId);
     }
@@ -45,7 +45,7 @@ public class WordApiController {
     /**
      * 단어 목록 조회
      */
-    @GetMapping
+    @GetMapping("/words")
     public Page<WordDetailResponse> findAll(
             @PageableDefault(size = 5, sort = "name", direction = Sort.Direction.DESC) final Pageable pageable) {
         return wordService.findAll(pageable)
