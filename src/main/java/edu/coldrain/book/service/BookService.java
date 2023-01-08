@@ -19,6 +19,7 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
+    @Transactional
     public Long create(final BookCreateRequest request) {
         final BookEntity bookEntity = request.toEntity();
         return bookRepository.save(bookEntity).getId();

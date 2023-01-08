@@ -20,6 +20,7 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final BookRepository bookRepository;
 
+    @Transactional
     public Long create(final Long bookId, final CategoryCreateRequest request) {
         final BookEntity bookEntity = bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found."));

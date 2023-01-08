@@ -23,7 +23,8 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/h2-console/**")
                 .permitAll()
-                .anyRequest().authenticated()
+                .anyRequest()
+                .permitAll()
                 .and()
                 .build();
     }

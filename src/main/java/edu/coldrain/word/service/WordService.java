@@ -20,6 +20,7 @@ public class WordService {
     private final WordRepository wordRepository;
     private final CategoryRepository categoryRepository;
 
+    @Transactional
     public Long create(final WordCreateRequest request, final Long categoryId) {
         final CategoryEntity categoryEntity = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new IllegalArgumentException("카테고리를 찾을 수 없습니다."));
