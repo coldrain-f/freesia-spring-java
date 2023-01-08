@@ -8,6 +8,7 @@ class FreesiaSpringJavaApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }

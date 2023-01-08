@@ -1,7 +1,7 @@
 package edu.coldrain.category.entity;
 
 import edu.coldrain.book.entity.BookEntity;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
