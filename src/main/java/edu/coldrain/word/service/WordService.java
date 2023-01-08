@@ -10,9 +10,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class WordService {
 
     private final WordRepository wordRepository;
@@ -28,11 +30,13 @@ public class WordService {
         return wordRepository.save(wordEntity).getId();
     }
 
+    @Transactional
     public void update(final Long wordId, final WordUpdateRequest request) {
         final WordEntity wordEntity = this.findById(wordId);
         wordEntity.changeName(request.getName());
     }
 
+    @Transactional
     public void delete(final Long wordId) {
         final WordEntity wordEntity = this.findById(wordId);
         final Boolean isDeleted = wordEntity.getIsDeleted();
