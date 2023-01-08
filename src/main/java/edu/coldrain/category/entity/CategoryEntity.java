@@ -34,6 +34,7 @@ public class CategoryEntity {
     public CategoryEntity(final String name, final Long completeCount) {
         this.name = name;
         this.completeCount = completeCount;
+        this.isDeleted = false;
     }
 
     public void changeBookEntity(final BookEntity bookEntity) {
