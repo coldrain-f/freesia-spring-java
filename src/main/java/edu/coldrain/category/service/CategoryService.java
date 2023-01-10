@@ -4,7 +4,7 @@ import edu.coldrain.book.entity.Book;
 import edu.coldrain.book.repository.BookRepository;
 import edu.coldrain.category.dto.CategoryCreateRequest;
 import edu.coldrain.category.dto.CategoryUpdateRequest;
-import edu.coldrain.category.entity.CategoryEntity;
+import edu.coldrain.category.entity.Category;
 import edu.coldrain.category.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,35 +25,35 @@ public class CategoryService {
         final Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found."));
 
-        final CategoryEntity categoryEntity = request.toEntity();
-        categoryEntity.changeBookEntity(book);
+        final Category category = request.toEntity();
+        category.changeBookEntity(book);
 
-        final CategoryEntity savedCategory = categoryRepository.save(categoryEntity);
+        final Category savedCategory = categoryRepository.save(category);
         return savedCategory.getId();
     }
 
     @Transactional
     public void update(final CategoryUpdateRequest request, final Long categoryId) {
-        final CategoryEntity categoryEntity = this.findById(categoryId);
-        categoryEntity.changeName(request.getName());
+        final Category category = this.findById(categoryId);
+        category.changeName(request.getName());
     }
 
-    public CategoryEntity findById(final Long categoryId) {
+    public Category findById(final Long categoryId) {
         return categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new IllegalArgumentException("Category not found."));
     }
 
     @Transactional
     public void delete(final Long categoryId) {
-        final CategoryEntity categoryEntity = this.findById((categoryId));
-        final Boolean isDeleted = categoryEntity.getIsDeleted();
+        final Category category = this.findById((categoryId));
+        final Boolean isDeleted = category.getIsDeleted();
         if (isDeleted) {
             throw new IllegalArgumentException("Already deleted category.");
         }
-        categoryEntity.changeIsDeleted(true);
+        category.changeIsDeleted(true);
     }
 
-    public Page<CategoryEntity> findAll(final Pageable pageable) {
+    public Page<Category> findAll(final Pageable pageable) {
         return categoryRepository.findAll(pageable);
     }
 }

@@ -1,6 +1,6 @@
 package edu.coldrain.word.service;
 
-import edu.coldrain.category.entity.CategoryEntity;
+import edu.coldrain.category.entity.Category;
 import edu.coldrain.category.repository.CategoryRepository;
 import edu.coldrain.word.dto.WordCreateRequest;
 import edu.coldrain.word.dto.WordUpdateRequest;
@@ -22,11 +22,11 @@ public class WordService {
 
     @Transactional
     public Long create(final WordCreateRequest request, final Long categoryId) {
-        final CategoryEntity categoryEntity = categoryRepository.findById(categoryId)
+        final Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new IllegalArgumentException("카테고리를 찾을 수 없습니다."));
 
         final WordEntity wordEntity = request.toEntity();
-        wordEntity.changeCategoryEntity(categoryEntity);
+        wordEntity.changeCategoryEntity(category);
 
         return wordRepository.save(wordEntity).getId();
     }

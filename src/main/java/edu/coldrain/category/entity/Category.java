@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CategoryEntity extends Timestamped {
+public class Category extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -34,7 +34,7 @@ public class CategoryEntity extends Timestamped {
     private Boolean isDeleted;
 
     @Builder
-    public CategoryEntity(final String name, final Long completeCount) {
+    public Category(final String name, final Long completeCount) {
         this.name = name;
         this.completeCount = completeCount;
         this.isDeleted = false;

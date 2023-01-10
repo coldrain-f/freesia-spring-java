@@ -1,6 +1,6 @@
 package edu.coldrain.category.dto;
 
-import edu.coldrain.category.entity.CategoryEntity;
+import edu.coldrain.category.entity.Category;
 import lombok.*;
 
 @Getter
@@ -15,8 +15,8 @@ public class CategoryCreateRequest {
         this.name = name;
     }
 
-    public CategoryEntity toEntity() {
-        return CategoryEntity.builder()
+    public Category toEntity() {
+        return Category.builder()
                 .name(this.name)
                 .completeCount(0L)
                 .build();
