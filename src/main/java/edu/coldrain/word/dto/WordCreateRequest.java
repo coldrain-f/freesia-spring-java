@@ -1,6 +1,6 @@
 package edu.coldrain.word.dto;
 
-import edu.coldrain.word.entity.WordEntity;
+import edu.coldrain.word.entity.Word;
 import lombok.Getter;
 
 @Getter
@@ -12,8 +12,8 @@ public class WordCreateRequest {
         this.name = name;
     }
 
-    public WordEntity toEntity() {
-        return WordEntity.builder()
+    public Word toEntity() {
+        return Word.builder()
                 .name(this.name)
                 .build();
     }

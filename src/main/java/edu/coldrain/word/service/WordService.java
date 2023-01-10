@@ -4,7 +4,7 @@ import edu.coldrain.category.entity.Category;
 import edu.coldrain.category.repository.CategoryRepository;
 import edu.coldrain.word.dto.WordCreateRequest;
 import edu.coldrain.word.dto.WordUpdateRequest;
-import edu.coldrain.word.entity.WordEntity;
+import edu.coldrain.word.entity.Word;
 import edu.coldrain.word.repository.WordRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,33 +25,33 @@ public class WordService {
         final Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new IllegalArgumentException("카테고리를 찾을 수 없습니다."));
 
-        final WordEntity wordEntity = request.toEntity();
-        wordEntity.changeCategoryEntity(category);
+        final Word word = request.toEntity();
+        word.changeCategoryEntity(category);
 
-        return wordRepository.save(wordEntity).getId();
+        return wordRepository.save(word).getId();
     }
 
     @Transactional
     public void update(final Long wordId, final WordUpdateRequest request) {
-        final WordEntity wordEntity = this.findById(wordId);
-        wordEntity.changeName(request.getName());
+        final Word word = this.findById(wordId);
+        word.changeName(request.getName());
     }
 
     @Transactional
     public void delete(final Long wordId) {
-        final WordEntity wordEntity = this.findById(wordId);
-        final Boolean isDeleted = wordEntity.getIsDeleted();
+        final Word word = this.findById(wordId);
+        final Boolean isDeleted = word.getIsDeleted();
         if (isDeleted) {
             throw new IllegalArgumentException("Already deleted word.");
         }
-        wordEntity.changeIsDeleted(true);
+        word.changeIsDeleted(true);
     }
 
-    public Page<WordEntity> findAll(final Pageable pageable) {
+    public Page<Word> findAll(final Pageable pageable) {
         return wordRepository.findAll(pageable);
     }
 
-    public WordEntity findById(final Long wordId) {
+    public Word findById(final Long wordId) {
         return wordRepository.findById(wordId)
                 .orElseThrow(() -> new IllegalArgumentException("Word not found."));
     }

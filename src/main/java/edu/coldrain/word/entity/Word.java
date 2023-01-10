@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class WordEntity extends Timestamped {
+public class Word extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -30,7 +30,7 @@ public class WordEntity extends Timestamped {
     private Boolean isDeleted;
 
     @Builder
-    public WordEntity(final String name) {
+    public Word(final String name) {
         this.name = name;
         this.isDeleted = false;
     }
