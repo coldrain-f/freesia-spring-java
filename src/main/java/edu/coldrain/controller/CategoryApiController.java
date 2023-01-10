@@ -49,7 +49,7 @@ public class CategoryApiController {
      */
     @GetMapping("/categories")
     public Page<CategoryDetailResponse> findAll(
-            @PageableDefault(size = 5, sort = "name", direction = Sort.Direction.DESC) final Pageable pageable) {
+            @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
         return categoryService.findAll(pageable)
                 .map((category) -> CategoryDetailResponse.builder()
                         .name(category.getName())
