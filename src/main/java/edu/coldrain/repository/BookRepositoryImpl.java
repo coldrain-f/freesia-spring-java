@@ -2,7 +2,6 @@ package edu.coldrain.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import edu.coldrain.entity.Book;
-import edu.coldrain.entity.QBook;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;

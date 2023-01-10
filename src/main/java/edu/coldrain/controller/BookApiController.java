@@ -85,7 +85,7 @@ public class BookApiController {
      */
     @GetMapping("/querydsl")
     public Page<Book> findAllByQuerydsl(
-            @PageableDefault(size = 5, sort = "name", direction = Sort.Direction.DESC) final Pageable pageable) {
+            @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
         return bookService.findAllByQuerydsl(pageable);
     }
 }
