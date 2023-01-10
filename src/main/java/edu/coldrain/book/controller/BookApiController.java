@@ -3,7 +3,7 @@ package edu.coldrain.book.controller;
 import edu.coldrain.book.dto.BookCreateRequest;
 import edu.coldrain.book.dto.BookDetailResponse;
 import edu.coldrain.book.dto.BookUpdateRequest;
-import edu.coldrain.book.entity.BookEntity;
+import edu.coldrain.book.entity.Book;
 import edu.coldrain.book.service.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +13,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -56,12 +54,12 @@ public class BookApiController {
      */
     @GetMapping("/{id}")
     public BookDetailResponse findOne(final @PathVariable("id") Long bookId) {
-        final BookEntity bookEntity = bookService.findById(bookId);
+        final Book book = bookService.findById(bookId);
         return BookDetailResponse.builder()
-                .name(bookEntity.getName())
-                .content(bookEntity.getContent())
-                .language(bookEntity.getLanguage())
-                .shareStatus(bookEntity.getShareStatus())
+                .name(book.getName())
+                .content(book.getContent())
+                .language(book.getLanguage())
+                .shareStatus(book.getShareStatus())
                 .build();
     }
 
@@ -86,7 +84,7 @@ public class BookApiController {
      * 단어장 목록 조회 QueryDSL
      */
     @GetMapping("/querydsl")
-    public Page<BookEntity> findAllByQuerydsl(
+    public Page<Book> findAllByQuerydsl(
             @PageableDefault(size = 5, sort = "name", direction = Sort.Direction.DESC) final Pageable pageable) {
         return bookService.findAllByQuerydsl(pageable);
     }

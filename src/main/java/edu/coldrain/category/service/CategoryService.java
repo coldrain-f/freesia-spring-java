@@ -1,6 +1,6 @@
 package edu.coldrain.category.service;
 
-import edu.coldrain.book.entity.BookEntity;
+import edu.coldrain.book.entity.Book;
 import edu.coldrain.book.repository.BookRepository;
 import edu.coldrain.category.dto.CategoryCreateRequest;
 import edu.coldrain.category.dto.CategoryUpdateRequest;
@@ -22,11 +22,11 @@ public class CategoryService {
 
     @Transactional
     public Long create(final Long bookId, final CategoryCreateRequest request) {
-        final BookEntity bookEntity = bookRepository.findById(bookId)
+        final Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found."));
 
         final CategoryEntity categoryEntity = request.toEntity();
-        categoryEntity.changeBookEntity(bookEntity);
+        categoryEntity.changeBookEntity(book);
 
         final CategoryEntity savedCategory = categoryRepository.save(categoryEntity);
         return savedCategory.getId();

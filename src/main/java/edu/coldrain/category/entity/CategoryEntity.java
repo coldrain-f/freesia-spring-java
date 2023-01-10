@@ -1,6 +1,7 @@
 package edu.coldrain.category.entity;
 
-import edu.coldrain.book.entity.BookEntity;
+import edu.coldrain.book.entity.Book;
+
 import javax.persistence.*;
 
 import edu.coldrain.common.Timestamped;
@@ -21,7 +22,7 @@ public class CategoryEntity extends Timestamped {
 
     @ManyToOne
     @JoinColumn(name = "BOOK_ID")
-    private BookEntity bookEntity;
+    private Book book;
 
     @Column()
     private String name;
@@ -39,8 +40,8 @@ public class CategoryEntity extends Timestamped {
         this.isDeleted = false;
     }
 
-    public void changeBookEntity(final BookEntity bookEntity) {
-        this.bookEntity = bookEntity;
+    public void changeBookEntity(final Book book) {
+        this.book = book;
     }
 
     public void changeName(final String name) {

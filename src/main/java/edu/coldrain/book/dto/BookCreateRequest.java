@@ -1,6 +1,6 @@
 package edu.coldrain.book.dto;
 
-import edu.coldrain.book.entity.BookEntity;
+import edu.coldrain.book.entity.Book;
 import lombok.*;
 
 @Getter
@@ -20,8 +20,8 @@ public class BookCreateRequest {
         this.shareStatus = shareStatus;
     }
 
-    public BookEntity toEntity() {
-        return BookEntity.builder()
+    public Book toEntity() {
+        return Book.builder()
                 .name(this.name)
                 .content(this.content)
                 .language(this.language)

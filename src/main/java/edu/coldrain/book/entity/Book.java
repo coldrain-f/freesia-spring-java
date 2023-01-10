@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class BookEntity extends Timestamped {
+public class Book extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -34,7 +34,7 @@ public class BookEntity extends Timestamped {
     private Boolean isDeleted;
 
     @Builder
-    public BookEntity(final String name, final String content, final String language, final String shareStatus) {
+    public Book(final String name, final String content, final String language, final String shareStatus) {
         this.name = name;
         this.content = content;
         this.language = language;
