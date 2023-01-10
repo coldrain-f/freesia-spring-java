@@ -1,7 +1,7 @@
 package edu.coldrain.controller;
 
 import edu.coldrain.dto.CategoryCreateRequest;
-import edu.coldrain.dto.CategoryDetailResponse;
+import edu.coldrain.dto.CategoryResponse;
 import edu.coldrain.dto.CategoryUpdateRequest;
 import edu.coldrain.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -48,7 +48,7 @@ public class CategoryApiController {
      * 카테고리 목록 조회
      */
     @GetMapping("/categories")
-    public Page<CategoryDetailResponse> findAll(
+    public Page<CategoryResponse> findAll(
             @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
         return null;
     }

@@ -1,7 +1,7 @@
 package edu.coldrain.service;
 
 import edu.coldrain.dto.BookCreateRequest;
-import edu.coldrain.dto.BookDetailResponse;
+import edu.coldrain.dto.BookResponse;
 import edu.coldrain.dto.BookUpdateRequest;
 import edu.coldrain.entity.Book;
 import edu.coldrain.repository.BookRepository;
@@ -62,7 +62,7 @@ public class BookService {
         return bookRepository.findAll(pageable);
     }
 
-    public Page<BookDetailResponse> findAllByQuerydsl(Pageable pageable) {
+    public Page<BookResponse> findAllByQuerydsl(Pageable pageable) {
         return bookRepository.findAllByQuerydsl(pageable);
     }
 }

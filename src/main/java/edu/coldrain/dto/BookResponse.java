@@ -1,7 +1,6 @@
 package edu.coldrain.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -9,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @ToString
-public class BookDetailResponse {
+public class BookResponse {
 
     private final Long id;
 
@@ -26,8 +25,8 @@ public class BookDetailResponse {
     private final LocalDateTime modifiedAt;
 
     @QueryProjection
-    public BookDetailResponse(final Long id, final String name, final String content, final String language,
-                              final String shareStatus, final LocalDateTime createdAt, final LocalDateTime modifiedAt) {
+    public BookResponse(final Long id, final String name, final String content, final String language,
+                        final String shareStatus, final LocalDateTime createdAt, final LocalDateTime modifiedAt) {
         this.id = id;
         this.name = name;
         this.content = content;

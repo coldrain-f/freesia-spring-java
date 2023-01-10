@@ -1,7 +1,7 @@
 package edu.coldrain.controller;
 
 import edu.coldrain.dto.BookCreateRequest;
-import edu.coldrain.dto.BookDetailResponse;
+import edu.coldrain.dto.BookResponse;
 import edu.coldrain.dto.BookUpdateRequest;
 import edu.coldrain.entity.Book;
 import edu.coldrain.service.BookService;
@@ -53,9 +53,9 @@ public class BookApiController {
      * 단어장 상세 조회
      */
     @GetMapping("/{id}")
-    public BookDetailResponse findOne(final @PathVariable("id") Long bookId) {
+    public BookResponse findOne(final @PathVariable("id") Long bookId) {
         final Book book = bookService.findById(bookId);
-        return new BookDetailResponse(
+        return new BookResponse(
                 book.getId(), book.getName(), book.getContent(),
                 book.getLanguage(), book.getShareStatus(), book.getCreatedAt(),
                 book.getModifiedAt());
@@ -65,7 +65,7 @@ public class BookApiController {
      * 단어장 목록 조회 QueryDSL
      */
     @GetMapping
-    public Page<BookDetailResponse> findAllByQuerydsl(
+    public Page<BookResponse> findAllByQuerydsl(
             @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
         return bookService.findAllByQuerydsl(pageable);
     }

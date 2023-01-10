@@ -1,13 +1,12 @@
 package edu.coldrain.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
-import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class CategoryDetailResponse {
+public class CategoryResponse {
 
     private final Long id;
     private final String name;
@@ -17,8 +16,8 @@ public class CategoryDetailResponse {
     private final LocalDateTime modifiedAt;
 
     @QueryProjection
-    public CategoryDetailResponse(final Long id, final String name, final LocalDateTime createdAt,
-                                  final LocalDateTime modifiedAt) {
+    public CategoryResponse(final Long id, final String name, final LocalDateTime createdAt,
+                            final LocalDateTime modifiedAt) {
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;

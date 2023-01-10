@@ -1,7 +1,7 @@
 package edu.coldrain.controller;
 
 import edu.coldrain.dto.WordCreateRequest;
-import edu.coldrain.dto.WordDetailResponse;
+import edu.coldrain.dto.WordResponse;
 import edu.coldrain.dto.WordUpdateRequest;
 import edu.coldrain.service.WordService;
 import lombok.RequiredArgsConstructor;
@@ -46,7 +46,7 @@ public class WordApiController {
      * 단어 목록 조회
      */
     @GetMapping("/words")
-    public Page<WordDetailResponse> findAll(
+    public Page<WordResponse> findAll(
             @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
         return null;
     }

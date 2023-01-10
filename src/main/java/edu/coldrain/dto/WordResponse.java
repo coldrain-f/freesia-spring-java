@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class WordDetailResponse {
+public class WordResponse {
 
     private final Long id;
     private final String name;
@@ -16,8 +16,8 @@ public class WordDetailResponse {
     private final LocalDateTime modifiedAt;
 
     @QueryProjection
-    public WordDetailResponse(final Long id, final String name, final LocalDateTime createdAt,
-                              final LocalDateTime modifiedAt) {
+    public WordResponse(final Long id, final String name, final LocalDateTime createdAt,
+                        final LocalDateTime modifiedAt) {
         this. id = id;
         this.name = name;
         this.createdAt = createdAt;
