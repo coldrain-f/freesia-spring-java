@@ -1,6 +1,5 @@
 package edu.coldrain.book.service;
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import edu.coldrain.book.dto.BookCreateRequest;
 import edu.coldrain.book.dto.BookUpdateRequest;
 import edu.coldrain.book.entity.BookEntity;
@@ -9,10 +8,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -64,7 +63,8 @@ public class BookService {
         return bookRepository.findAll(pageable);
     }
 
-    public List<BookEntity> findAllByQuerydsl() {
-        return bookRepository.findAllByQuerydsl();
+    public Page<BookEntity> findAllByQuerydsl(
+            @PageableDefault(size = 5, sort = "name", direction = Sort.Direction.DESC) final Pageable pageable) {
+        return bookRepository.findAllByQuerydsl(pageable);
     }
 }
