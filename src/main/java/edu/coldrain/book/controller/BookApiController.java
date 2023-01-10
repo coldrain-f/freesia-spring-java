@@ -14,6 +14,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -78,5 +80,13 @@ public class BookApiController {
                         .language(bookEntity.getLanguage())
                         .shareStatus(bookEntity.getShareStatus())
                         .build());
+    }
+
+    /**
+     * 단어장 목록 조회 QueryDSL
+     */
+    @GetMapping("/querydsl")
+    public List<BookEntity> findAllByQuerydsl() {
+        return bookService.findAllByQuerydsl();
     }
 }

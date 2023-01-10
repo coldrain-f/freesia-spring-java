@@ -1,9 +1,10 @@
 package edu.coldrain.book.repository;
 
-import java.awt.print.Book;
+import edu.coldrain.book.entity.BookEntity;
+
 import java.util.List;
 
 public interface BookRepositoryQuerydsl {
 
-    List<Book> findAllByQuerydsl();
+    List<BookEntity> findAllByQuerydsl();
 }

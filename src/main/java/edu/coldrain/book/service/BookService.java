@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -62,7 +64,7 @@ public class BookService {
         return bookRepository.findAll(pageable);
     }
 
-    public void queryfindAll() {
-
+    public List<BookEntity> findAllByQuerydsl() {
+        return bookRepository.findAllByQuerydsl();
     }
 }
