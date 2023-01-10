@@ -55,36 +55,17 @@ public class BookApiController {
     @GetMapping("/{id}")
     public BookDetailResponse findOne(final @PathVariable("id") Long bookId) {
         final Book book = bookService.findById(bookId);
-        return BookDetailResponse.builder()
-                .name(book.getName())
-                .content(book.getContent())
-                .language(book.getLanguage())
-                .shareStatus(book.getShareStatus())
-                .build();
-    }
-
-    /**
-     * 단어장 목록 조회
-     */
-    @GetMapping
-    public Page<BookDetailResponse> findAll(
-            // Todo: 추후에 정렬 필드를 createdAt 으로 변경 필요.
-            @PageableDefault(size = 5, sort = "name", direction = Sort.Direction.DESC) final Pageable pageable) {
-
-        return bookService.findAll(pageable)
-                .map((bookEntity) -> BookDetailResponse.builder()
-                        .name(bookEntity.getName())
-                        .content(bookEntity.getContent())
-                        .language(bookEntity.getLanguage())
-                        .shareStatus(bookEntity.getShareStatus())
-                        .build());
+        return new BookDetailResponse(
+                book.getId(), book.getName(), book.getContent(),
+                book.getLanguage(), book.getShareStatus(), book.getCreatedAt(),
+                book.getModifiedAt());
     }
 
     /**
      * 단어장 목록 조회 QueryDSL
      */
-    @GetMapping("/querydsl")
-    public Page<Book> findAllByQuerydsl(
+    @GetMapping
+    public Page<BookDetailResponse> findAllByQuerydsl(
             @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
         return bookService.findAllByQuerydsl(pageable);
     }

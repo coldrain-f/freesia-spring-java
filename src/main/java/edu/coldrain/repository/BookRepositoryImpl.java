@@ -1,6 +1,8 @@
 package edu.coldrain.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import edu.coldrain.dto.BookDetailResponse;
+import edu.coldrain.dto.QBookDetailResponse;
 import edu.coldrain.entity.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -21,8 +23,18 @@ public class BookRepositoryImpl implements BookRepositoryQuerydsl {
     }
 
     @Override
-    public Page<Book> findAllByQuerydsl(Pageable pageable) {
-        final List<Book> content = query.select(book)
+    public Page<BookDetailResponse> findAllByQuerydsl(Pageable pageable) {
+        final List<BookDetailResponse> content = query.select(
+                        new QBookDetailResponse(
+                                book.id,
+                                book.name,
+                                book.content,
+                                book.language,
+                                book.shareStatus,
+                                book.createdAt,
+                                book.modifiedAt
+                        )
+                )
                 .from(book)
                 .where(book.isDeleted.eq(false))
                 .offset(pageable.getOffset())

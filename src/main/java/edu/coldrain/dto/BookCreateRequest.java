@@ -1,7 +1,9 @@
 package edu.coldrain.dto;
 
 import edu.coldrain.entity.Book;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @ToString
