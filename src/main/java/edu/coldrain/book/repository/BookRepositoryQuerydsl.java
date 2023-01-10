@@ -1,10 +1,10 @@
 package edu.coldrain.book.repository;
 
 import edu.coldrain.book.entity.BookEntity;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface BookRepositoryQuerydsl {
 
-    List<BookEntity> findAllByQuerydsl();
+    Page<BookEntity> findAllByQuerydsl(Pageable pageable);
 }
