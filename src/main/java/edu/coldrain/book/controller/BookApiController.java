@@ -86,7 +86,8 @@ public class BookApiController {
      * 단어장 목록 조회 QueryDSL
      */
     @GetMapping("/querydsl")
-    public List<BookEntity> findAllByQuerydsl() {
-        return bookService.findAllByQuerydsl();
+    public Page<BookEntity> findAllByQuerydsl(
+            @PageableDefault(size = 5, sort = "name", direction = Sort.Direction.DESC) final Pageable pageable) {
+        return bookService.findAllByQuerydsl(pageable);
     }
 }

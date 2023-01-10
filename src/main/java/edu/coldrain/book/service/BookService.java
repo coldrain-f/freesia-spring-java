@@ -63,8 +63,7 @@ public class BookService {
         return bookRepository.findAll(pageable);
     }
 
-    public Page<BookEntity> findAllByQuerydsl(
-            @PageableDefault(size = 5, sort = "name", direction = Sort.Direction.DESC) final Pageable pageable) {
+    public Page<BookEntity> findAllByQuerydsl(Pageable pageable) {
         return bookRepository.findAllByQuerydsl(pageable);
     }
 }
