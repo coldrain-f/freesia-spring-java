@@ -2,6 +2,8 @@ package edu.coldrain.word.entity;
 
 import edu.coldrain.category.entity.CategoryEntity;
 import javax.persistence.*;
+
+import edu.coldrain.common.Timestamped;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class WordEntity {
+public class WordEntity extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

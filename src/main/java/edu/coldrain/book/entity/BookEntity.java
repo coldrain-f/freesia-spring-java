@@ -1,6 +1,8 @@
 package edu.coldrain.book.entity;
 
 import javax.persistence.*;
+
+import edu.coldrain.common.Timestamped;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class BookEntity {
+public class BookEntity extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
