@@ -48,9 +48,6 @@ public class WordApiController {
     @GetMapping("/words")
     public Page<WordDetailResponse> findAll(
             @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
-        return wordService.findAll(pageable)
-                .map((wordEntity) -> WordDetailResponse.builder()
-                        .name(wordEntity.getName())
-                        .build());
+        return null;
     }
 }
