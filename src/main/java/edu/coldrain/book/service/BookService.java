@@ -1,5 +1,6 @@
 package edu.coldrain.book.service;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import edu.coldrain.book.dto.BookCreateRequest;
 import edu.coldrain.book.dto.BookUpdateRequest;
 import edu.coldrain.book.entity.BookEntity;
@@ -59,5 +60,9 @@ public class BookService {
     public Page<BookEntity> findAll(final Pageable pageable) {
         // Todo: 삭제된 단어장은 제외하고 조회하도록 변경 필요
         return bookRepository.findAll(pageable);
+    }
+
+    public void queryfindAll() {
+
     }
 }
