@@ -1,5 +1,6 @@
 package edu.coldrain.service;
 
+import edu.coldrain.dto.WordResponse;
 import edu.coldrain.entity.Category;
 import edu.coldrain.repository.CategoryRepository;
 import edu.coldrain.dto.WordCreateRequest;
@@ -54,5 +55,9 @@ public class WordService {
     public Word findById(final Long wordId) {
         return wordRepository.findById(wordId)
                 .orElseThrow(() -> new IllegalArgumentException("단어를 찾을 수 없습니다. WORD_ID = " + wordId));
+    }
+
+    public Page<WordResponse> findAllByQuerydsl(final Pageable pageable) {
+        return wordRepository.findAllByQuerydsl(pageable);
     }
 }

@@ -48,6 +48,6 @@ public class WordApiController {
     @GetMapping("/words")
     public Page<WordResponse> findAll(
             @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
-        return null;
+        return wordService.findAllByQuerydsl(pageable);
     }
 }
