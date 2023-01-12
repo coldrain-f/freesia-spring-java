@@ -23,7 +23,7 @@ public class WordService {
     @Transactional
     public Long create(final WordCreateRequest request, final Long categoryId) {
         final Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new IllegalArgumentException("카테고리를 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("카테고리를 찾을 수 없습니다. CATEGORY_ID = " + categoryId));
 
         final Word word = request.toEntity();
         word.changeCategoryEntity(category);
@@ -42,7 +42,7 @@ public class WordService {
         final Word word = this.findById(wordId);
         final Boolean isDeleted = word.getIsDeleted();
         if (isDeleted) {
-            throw new IllegalArgumentException("Already deleted word.");
+            throw new IllegalArgumentException("이미 삭제된 단어입니다.");
         }
         word.changeIsDeleted(true);
     }
@@ -53,6 +53,6 @@ public class WordService {
 
     public Word findById(final Long wordId) {
         return wordRepository.findById(wordId)
-                .orElseThrow(() -> new IllegalArgumentException("Word not found."));
+                .orElseThrow(() -> new IllegalArgumentException("단어를 찾을 수 없습니다. WORD_ID = " + wordId));
     }
 }
