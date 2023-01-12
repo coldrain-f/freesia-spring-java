@@ -23,7 +23,7 @@ public class CategoryService {
     @Transactional
     public Long create(final Long bookId, final CategoryCreateRequest request) {
         final Book book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new IllegalArgumentException("Book not found."));
+                .orElseThrow(() -> new IllegalArgumentException("단어장을 찾을 수 없습니다. BOOK_ID = " + bookId));
 
         final Category category = request.toEntity();
         category.changeBookEntity(book);
@@ -40,7 +40,7 @@ public class CategoryService {
 
     public Category findById(final Long categoryId) {
         return categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new IllegalArgumentException("Category not found."));
+                .orElseThrow(() -> new IllegalArgumentException("카테고리를 찾을 수 없습니다. CATEGORY_ID = " + categoryId));
     }
 
     @Transactional
@@ -48,7 +48,7 @@ public class CategoryService {
         final Category category = this.findById((categoryId));
         final Boolean isDeleted = category.getIsDeleted();
         if (isDeleted) {
-            throw new IllegalArgumentException("Already deleted category.");
+            throw new IllegalArgumentException("이미 삭제된 카테고리입니다.");
         }
         category.changeIsDeleted(true);
     }
