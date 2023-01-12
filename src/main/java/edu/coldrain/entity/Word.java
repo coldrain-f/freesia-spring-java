@@ -23,10 +23,10 @@ public class Word extends Timestamped {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-    @Column()
+    @Column(nullable = false)
     private String name;
 
-    @Column()
+    @Column(nullable = false)
     private Boolean isDeleted;
 
     @Builder
