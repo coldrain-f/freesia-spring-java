@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,6 +24,7 @@ public class CategoryApiController {
      * 카테고리 등록
      */
     @PostMapping("/books/{id}/categories")
+    @ResponseStatus(HttpStatus.CREATED)
     public Long create(@PathVariable("id") final Long bookId,
                        @RequestBody final CategoryCreateRequest request) {
         return categoryService.create(bookId, request);
