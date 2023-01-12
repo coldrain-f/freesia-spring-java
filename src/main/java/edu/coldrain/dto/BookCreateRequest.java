@@ -5,18 +5,19 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Getter
 @ToString
 public class BookCreateRequest {
 
-    @NotNull
+    @NotBlank
     private final String name;
     private final String content;
-    @NotNull
+    @NotBlank
     private final String language;
-    @NotNull
+    @NotBlank
     private final String shareStatus;
 
     @Builder
