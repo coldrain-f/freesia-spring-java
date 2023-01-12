@@ -1,5 +1,6 @@
 package edu.coldrain.service;
 
+import edu.coldrain.dto.CategoryResponse;
 import edu.coldrain.entity.Book;
 import edu.coldrain.repository.BookRepository;
 import edu.coldrain.dto.CategoryCreateRequest;
@@ -53,7 +54,7 @@ public class CategoryService {
         category.changeIsDeleted(true);
     }
 
-    public Page<Category> findAll(final Pageable pageable) {
-        return categoryRepository.findAll(pageable);
+    public Page<CategoryResponse> findAllByQuerydsl(final Pageable pageable) {
+        return categoryRepository.findAllByQuerydsl(pageable);
     }
 }

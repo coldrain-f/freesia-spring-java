@@ -50,7 +50,7 @@ public class CategoryApiController {
     @GetMapping("/categories")
     public Page<CategoryResponse> findAll(
             @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
-        return null;
+        return categoryService.findAllByQuerydsl(pageable);
     }
 
 }
