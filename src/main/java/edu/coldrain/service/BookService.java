@@ -40,19 +40,22 @@ public class BookService {
     public void delete(final Long bookId) {
         final Book book = this.findById(bookId);
 
+        // Todo: 중복 코드. 나중에 메서드로 분리 예정
         final Boolean isDeleted = book.getIsDeleted();
         if (isDeleted) {
-            throw new IllegalArgumentException("Already deleted book.");
+            throw new IllegalArgumentException("이미 삭제된 단어장입니다.");
         }
         book.changeIsDeleted(true);
     }
 
     public Book findById(final Long bookId) {
         final Book book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new IllegalArgumentException("Book not found."));
+                .orElseThrow(() -> new IllegalArgumentException("단어장을 찾을 수 없습니다. BOOK_ID = " + bookId));
+
+        // Todo: 중복 코드. 나중에 메서드로 분리 예정
         final Boolean isDeleted = book.getIsDeleted();
         if (isDeleted) {
-            throw new IllegalArgumentException("Already deleted book.");
+            throw new IllegalArgumentException("이미 삭제된 단어장입니다.");
         }
         return book;
     }
