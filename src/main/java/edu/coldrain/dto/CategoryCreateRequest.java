@@ -18,7 +18,6 @@ public class CategoryCreateRequest {
     public Category toEntity() {
         return Category.builder()
                 .name(this.name)
-                .completeCount(0L)
                 .build();
     }
 }

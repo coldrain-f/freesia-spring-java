@@ -1,14 +1,12 @@
 package edu.coldrain.entity;
 
-import edu.coldrain.entity.Book;
-
-import javax.persistence.*;
-
 import edu.coldrain.common.Timestamped;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -24,13 +22,13 @@ public class Category extends Timestamped {
     @JoinColumn(name = "BOOK_ID")
     private Book book;
 
-    @Column()
+    @Column(nullable = false)
     private String name;
 
-    @Column()
+    @Column(nullable = false)
     private Long completeCount;
 
-    @Column()
+    @Column(nullable = false)
     private Boolean isDeleted;
 
     @Builder

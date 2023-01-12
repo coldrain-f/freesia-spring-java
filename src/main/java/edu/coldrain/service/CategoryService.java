@@ -27,6 +27,7 @@ public class CategoryService {
                 .orElseThrow(() -> new IllegalArgumentException("단어장을 찾을 수 없습니다. BOOK_ID = " + bookId));
 
         final Category category = request.toEntity();
+        category.changeCompleteCount(0L);
         category.changeBookEntity(book);
 
         final Category savedCategory = categoryRepository.save(category);
