@@ -57,4 +57,8 @@ public class CategoryService {
     public Page<CategoryResponse> findAllByQuerydsl(final Pageable pageable) {
         return categoryRepository.findAllByQuerydsl(pageable);
     }
+
+    public Page<CategoryResponse> findAllByBookId(final Long bookId, final Pageable pageable) {
+        return categoryRepository.findAllByBookId(bookId, pageable);
+    }
 }

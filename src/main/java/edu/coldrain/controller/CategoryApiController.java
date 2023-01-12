@@ -53,4 +53,14 @@ public class CategoryApiController {
         return categoryService.findAllByQuerydsl(pageable);
     }
 
+    /**
+     * 특정 단어장에 소속된 모든 카테고리 조회
+     */
+    @GetMapping("/books/{id}/categories")
+    public Page<CategoryResponse> findAllByBookId(
+            @PathVariable("id") final Long bookId,
+            @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
+        return categoryService.findAllByBookId(bookId, pageable);
+    }
+
 }
