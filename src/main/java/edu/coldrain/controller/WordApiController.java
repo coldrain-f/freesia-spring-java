@@ -54,4 +54,13 @@ public class WordApiController {
             @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
         return wordService.findAllByQuerydsl(pageable);
     }
+
+    /**
+     * 특정 카테고리에 소속된 단어 목록 조회
+     */
+    @GetMapping("/categories/{id}/words")
+    public Page<WordResponse> findAllByCategoryId(@PathVariable("id") final Long categoryId,
+            @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
+        return wordService.findAllByCategoryId(categoryId, pageable);
+    }
 }

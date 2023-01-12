@@ -60,4 +60,8 @@ public class WordService {
     public Page<WordResponse> findAllByQuerydsl(final Pageable pageable) {
         return wordRepository.findAllByQuerydsl(pageable);
     }
+
+    public Page<WordResponse> findAllByCategoryId(final Long categoryId, final Pageable pageable) {
+        return wordRepository.findAllByCategoryId(categoryId, pageable);
+    }
 }

@@ -43,4 +43,36 @@ public class WordRepositoryImpl implements WordRepositoryQuerydsl {
 
         return new PageImpl<>(content, pageable, total);
     }
+
+    @Override
+    public Page<WordResponse> findAllByCategoryId(Long categoryId, Pageable pageable) {
+        final List<WordResponse> content = query.select(
+                        new QWordResponse(
+                                word.id,
+                                word.name,
+                                word.createdAt,
+                                word.modifiedAt
+                        )
+                )
+                .from(word)
+                .where(
+                        word.category.id.eq(categoryId).and(
+                                word.isDeleted.eq(false)
+                        )
+                )
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        final Long total = query.select(word.count())
+                .from(word)
+                .where(
+                        word.category.id.eq(categoryId).and(
+                                word.isDeleted.eq(false)
+                        )
+                )
+                .fetchOne();
+
+        return new PageImpl<>(content, pageable, total);
+    }
 }
