@@ -2,12 +2,12 @@ package edu.coldrain.dto;
 
 import lombok.Getter;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 public class WordUpdateRequest {
 
-    @NotNull
+    @NotBlank
     private final String name;
 
     public WordUpdateRequest(final String name) {

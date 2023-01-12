@@ -3,14 +3,14 @@ package edu.coldrain.dto;
 import edu.coldrain.entity.Category;
 import lombok.*;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CategoryCreateRequest {
 
-    @NotNull
+    @NotBlank
     private String name;
 
     @Builder

@@ -3,12 +3,12 @@ package edu.coldrain.dto;
 import edu.coldrain.entity.Word;
 import lombok.Getter;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 public class WordCreateRequest {
 
-    @NotNull
+    @NotBlank
     private final String name;
 
     public WordCreateRequest(final String name) {
