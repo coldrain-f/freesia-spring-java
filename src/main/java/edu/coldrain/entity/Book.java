@@ -18,19 +18,19 @@ public class Book extends Timestamped {
     @Column(name = "BOOK_ID")
     private Long id;
 
-    @Column()
+    @Column(nullable = false)
     private String name;
 
-    @Column()
+    @Column
     private String content;
 
-    @Column()
+    @Column(nullable = false)
     private String language;
 
-    @Column()
+    @Column(nullable = false)
     private String shareStatus;
 
-    @Column()
+    @Column(nullable = false)
     private Boolean isDeleted;
 
     @Builder
