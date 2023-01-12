@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,7 +27,7 @@ public class CategoryApiController {
     @PostMapping("/books/{id}/categories")
     @ResponseStatus(HttpStatus.CREATED)
     public Long create(@PathVariable("id") final Long bookId,
-                       @RequestBody final CategoryCreateRequest request) {
+                       @Validated @RequestBody final CategoryCreateRequest request) {
         return categoryService.create(bookId, request);
     }
 
@@ -34,7 +35,8 @@ public class CategoryApiController {
      * 카테고리 수정
      */
     @PatchMapping("/categories/{id}")
-    public void update(final @PathVariable("id") Long categoryId, @RequestBody final CategoryUpdateRequest request) {
+    public void update(final @PathVariable("id") Long categoryId,
+                       @Validated @RequestBody final CategoryUpdateRequest request) {
         categoryService.update(request, categoryId);
     }
 
