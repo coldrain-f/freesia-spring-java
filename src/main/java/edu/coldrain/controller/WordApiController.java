@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,7 +25,7 @@ public class WordApiController {
     @PostMapping("/categories/{id}/words")
     @ResponseStatus(HttpStatus.CREATED)
     public Long create(@PathVariable("id") final Long categoryId,
-                       @RequestBody final WordCreateRequest request) {
+                       @Validated @RequestBody final WordCreateRequest request) {
         return wordService.create(request, categoryId);
     }
 
@@ -32,7 +33,8 @@ public class WordApiController {
      * 단어 수정
      */
     @PatchMapping("/words/{id}")
-    public void update(@PathVariable("id") final Long wordId, @RequestBody final WordUpdateRequest request) {
+    public void update(@PathVariable("id") final Long wordId,
+                       @Validated @RequestBody final WordUpdateRequest request) {
         wordService.update(wordId, request);
     }
 
