@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,8 +28,7 @@ public class BookApiController {
      */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Long create(@RequestBody final BookCreateRequest request) {
-        log.info("request = {}", request);
+    public Long create(@Validated @RequestBody final BookCreateRequest request) {
         return bookService.create(request);
     }
 
@@ -36,8 +36,8 @@ public class BookApiController {
      * 단어장 수정
      */
     @PatchMapping("/{id}")
-    public void update(final @PathVariable("id") Long bookId, @RequestBody final BookUpdateRequest request) {
-        log.info("request = {}", request);
+    public void update(final @PathVariable("id") Long bookId,
+                       @Validated @RequestBody final BookUpdateRequest request) {
         bookService.update(request, bookId);
     }
 
