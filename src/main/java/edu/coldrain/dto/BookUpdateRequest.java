@@ -1,5 +1,6 @@
 package edu.coldrain.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -18,6 +19,7 @@ public class BookUpdateRequest {
     @NotBlank
     private final String shareStatus;
 
+    @Builder
     public BookUpdateRequest(final String name, final String content, final String language, final String shareStatus) {
         this.name = name;
         this.content = content;
