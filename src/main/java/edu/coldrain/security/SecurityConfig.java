@@ -10,8 +10,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-@EnableWebSecurity
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
@@ -21,16 +21,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf()
-                .disable()
+        return http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/h2-console/**")
-                .permitAll()
-                .anyRequest()
-                .permitAll()
+                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/books/**", "/categories/**", "/words/**").authenticated()
+                .anyRequest().permitAll()
                 .and()
-                .cors()
-                .configurationSource(corsConfigurationSource())
+                .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .build();
     }
