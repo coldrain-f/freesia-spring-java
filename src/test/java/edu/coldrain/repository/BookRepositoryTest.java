@@ -1,12 +1,11 @@
 package edu.coldrain.repository;
 
 import edu.coldrain.entity.Book;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,6 +16,19 @@ class BookRepositoryTest {
 
     @Autowired
     private BookRepository bookRepository;
+
+    // 항상 @Test 보다 먼저 실행 된다.
+    @BeforeEach
+    void setUp() {
+        Book book = Book.builder()
+                .name("단어가 읽기다 기본편")
+                .content("단어가 읽기다 기본편 - 내용")
+                .language("en")
+                .shareStatus("public")
+                .build();
+
+        bookRepository.save(book);
+    }
 
     @Test
     @DisplayName("단어장을 하나 등록한다.")
@@ -43,20 +55,13 @@ class BookRepositoryTest {
     @DisplayName("단어장을 하나 삭제한다.")
     void delete() {
         // given
-        Book book = Book.builder()
-                .name("단어가 읽기다 기본편")
-                .content("단어가 읽기다 기본편 - 내용")
-                .language("en")
-                .shareStatus("public")
-                .build();
-
-        Long savedBookId = bookRepository.save(book).getId();
+        Long bookId = 1L;
 
         // when
-        bookRepository.deleteById(savedBookId);
-        Optional<Book> findBook = bookRepository.findById(savedBookId);
+        bookRepository.deleteById(bookId);
 
         // then
-        assertFalse(findBook.isPresent());
+        assertFalse(bookRepository.findById(bookId).isPresent());
     }
+
 }
