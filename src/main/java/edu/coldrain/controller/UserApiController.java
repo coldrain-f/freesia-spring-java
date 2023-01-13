@@ -1,6 +1,7 @@
 package edu.coldrain.controller;
 
 import edu.coldrain.dto.UserSignUpRequest;
+import edu.coldrain.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserApiController {
 
-    @PostMapping
-    public void signUp(final UserSignUpRequest request) {
+    private final UserService userService;
 
+    @PostMapping
+    public Long signUp(final UserSignUpRequest request) {
+        return userService.signUp(request);
     }
 }
