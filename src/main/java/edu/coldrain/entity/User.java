@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
@@ -19,27 +20,48 @@ public class User extends Timestamped {
     @Column(name = "USER_ID")
     private Long id;
 
+    @Column(length = 50, unique = true)
     private String username;
 
+    @Column(length = 100)
     private String password;
 
-    private String email;
+    @Column(length = 50, unique = true)
+    private String nickname;
 
-    private String role;
+    @Column()
+    private boolean activated;
+
+    @ManyToMany
+    @JoinTable(
+            name = "USER_AUTHORITY",
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_NAME", referencedColumnName = "AUTHORITY_NAME")})
+    private Set<Authority> authorities;
 
     @Builder
-    public User(final String username, final String password, final String email, final String role) {
+    public User(final String username, final String password, final String nickname, final boolean activated,
+                final Set<Authority> authorities) {
         this.username = username;
         this.password = password;
-        this.email = email;
-        this.role = role;
+        this.nickname = nickname;
+        this.activated = activated;
+        this.authorities = authorities;
     }
 
     public void changePassword(final String password) {
         this.password = password;
     }
 
-    public void changeRole(final String role) {
-        this.role = role;
+    public void changeNickname(final String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void changeActivated(final boolean activated) {
+        this.activated = activated;
+    }
+
+    public void changeAuthorities(final Set<Authority> authorities) {
+        this.authorities = authorities;
     }
 }
