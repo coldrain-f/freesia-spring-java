@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/books")
+@RequestMapping("/api")
 public class BookApiController {
 
     private final BookService bookService;
@@ -29,7 +29,7 @@ public class BookApiController {
     /**
      * 단어장 등록
      */
-    @PostMapping
+    @PostMapping("/books")
     @ResponseStatus(HttpStatus.CREATED)
     public Long create(@Validated @RequestBody final BookCreateRequest request) {
         return bookService.create(request, userService.getCurrentUserWithAuthorities());
@@ -38,7 +38,7 @@ public class BookApiController {
     /**
      * 단어장 수정
      */
-    @PatchMapping("/{id}")
+    @PatchMapping("/books/{id}")
     public void update(final @PathVariable("id") Long bookId,
                        @Validated @RequestBody final BookUpdateRequest request) {
         bookService.update(request, bookId);
@@ -47,7 +47,7 @@ public class BookApiController {
     /**
      * 단어장 삭제
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/books/{id}")
     public void delete(final @PathVariable("id") Long bookId) {
         bookService.delete(bookId);
     }
@@ -55,7 +55,7 @@ public class BookApiController {
     /**
      * 단어장 상세 조회
      */
-    @GetMapping("/{id}")
+    @GetMapping("/books/{id}")
     public BookResponse findOne(final @PathVariable("id") Long bookId) {
         final Book book = bookService.findById(bookId);
         return new BookResponse(
@@ -67,7 +67,7 @@ public class BookApiController {
     /**
      * 단어장 목록 조회 QueryDSL
      */
-    @GetMapping
+    @GetMapping("/books")
     public Page<BookResponse> findAllByQuerydsl(
             @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
         return bookService.findAllByQuerydsl(pageable);
