@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Authority extends Timestamped {
+public class Authority {
 
     @Id
     @Column(name = "AUTHORITY_NAME", length = 50)

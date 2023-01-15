@@ -4,6 +4,8 @@ import edu.coldrain.dto.TokenResponse;
 import edu.coldrain.dto.UserLoginRequest;
 import edu.coldrain.jwt.JwtFilter;
 import edu.coldrain.jwt.TokenProvider;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,10 +24,13 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@Tag(name = "Authentication", description = "Auth Api Controller")
 public class AuthApiController {
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
+    @Tag(name = "Authentication")
+    @ApiOperation(value = "사용자 인증 API", notes = "", authorizations = {})
     @PostMapping("/authentication/authenticate")
     public ResponseEntity<TokenResponse> authorize(@Valid @RequestBody UserLoginRequest request) {
 
