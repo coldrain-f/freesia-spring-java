@@ -39,7 +39,11 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/h2-console/**");
+        return (web) -> web.ignoring().antMatchers(
+                "/h2-console/**",
+                "/swagger-ui/**", "/v3/api-docs", "/swagger-resources", "/swagger-ui.html", "/swagger/**",
+                "/configuration/security", "/webjars/**"
+        );
     }
 
     @Bean
@@ -64,6 +68,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/swagger-ui/**", "/swagger-resources/**").permitAll()
                 .antMatchers("/api/authentication/authenticate", "/api/users/signup").permitAll()
                 .anyRequest().authenticated()
 
