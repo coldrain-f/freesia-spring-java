@@ -1,5 +1,6 @@
 package edu.coldrain.entity;
 
+import edu.coldrain.common.Timestamped;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Authority {
+public class Authority extends Timestamped {
 
     @Id
     @Column(name = "AUTHORITY_NAME", length = 50)
