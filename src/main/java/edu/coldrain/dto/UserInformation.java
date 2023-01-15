@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserResponse {
+public class UserInformation {
 
     private String username;
 
@@ -20,16 +20,16 @@ public class UserResponse {
     private Set<AuthorityResponse> authorityResponseSet;
 
     @Builder
-    public UserResponse(final String username, final String nickname, final Set<AuthorityResponse> authorityResponseSet) {
+    public UserInformation(final String username, final String nickname, final Set<AuthorityResponse> authorityResponseSet) {
         this.username = username;
         this.nickname = nickname;
         this.authorityResponseSet = authorityResponseSet;
     }
 
-    public static UserResponse from(User user) {
+    public static UserInformation from(User user) {
         if(user == null) return null;
 
-        return UserResponse.builder()
+        return UserInformation.builder()
                 .username(user.getUsername())
                 .nickname(user.getNickname())
                 .authorityResponseSet(user.getAuthorities().stream()

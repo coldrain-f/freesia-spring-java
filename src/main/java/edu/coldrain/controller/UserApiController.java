@@ -1,6 +1,6 @@
 package edu.coldrain.controller;
 
-import edu.coldrain.dto.UserResponse;
+import edu.coldrain.dto.UserInformation;
 import edu.coldrain.dto.UserSignUpRequest;
 import edu.coldrain.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -25,13 +25,13 @@ public class UserApiController {
 
     @GetMapping("/users/current")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public UserResponse getCurrentUser() {
+    public UserInformation getCurrentUser() {
         return userService.getCurrentUserWithAuthorities();
     }
 
     @GetMapping("/users/{username}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public UserResponse getUser(@PathVariable final String username) {
+    public UserInformation getUser(@PathVariable final String username) {
         return userService.getUserWithAuthorities(username);
     }
 }

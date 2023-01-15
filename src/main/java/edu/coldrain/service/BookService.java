@@ -3,8 +3,12 @@ package edu.coldrain.service;
 import edu.coldrain.dto.BookCreateRequest;
 import edu.coldrain.dto.BookResponse;
 import edu.coldrain.dto.BookUpdateRequest;
+import edu.coldrain.dto.UserInformation;
 import edu.coldrain.entity.Book;
+import edu.coldrain.entity.User;
+import edu.coldrain.exception.NotFoundUserException;
 import edu.coldrain.repository.BookRepository;
+import edu.coldrain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -20,9 +24,15 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
+    private final UserRepository userRepository;
+
     @Transactional
-    public Long create(final BookCreateRequest request) {
+    public Long create(final BookCreateRequest request, final UserInformation currentUser) {
         final Book book = request.toEntity();
+        final User author = userRepository.findOneWithAuthoritiesByUsername(currentUser.getUsername())
+                .orElseThrow(() -> new NotFoundUserException("사용자를 찾을 수 없습니다."));
+
+        book.changeAuthor(author);
         return bookRepository.save(book).getId();
     }
 

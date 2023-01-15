@@ -5,6 +5,7 @@ import edu.coldrain.dto.BookResponse;
 import edu.coldrain.dto.BookUpdateRequest;
 import edu.coldrain.entity.Book;
 import edu.coldrain.service.BookService;
+import edu.coldrain.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -23,13 +24,15 @@ public class BookApiController {
 
     private final BookService bookService;
 
+    private final UserService userService;
+
     /**
      * 단어장 등록
      */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Long create(@Validated @RequestBody final BookCreateRequest request) {
-        return bookService.create(request);
+        return bookService.create(request, userService.getCurrentUserWithAuthorities());
     }
 
     /**

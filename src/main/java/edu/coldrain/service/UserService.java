@@ -1,6 +1,6 @@
 package edu.coldrain.service;
 
-import edu.coldrain.dto.UserResponse;
+import edu.coldrain.dto.UserInformation;
 import edu.coldrain.dto.UserSignUpRequest;
 import edu.coldrain.entity.Authority;
 import edu.coldrain.entity.User;
@@ -46,13 +46,13 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public UserResponse getUserWithAuthorities(final String username) {
-        return UserResponse.from(userRepository.findOneWithAuthoritiesByUsername(username).orElse(null));
+    public UserInformation getUserWithAuthorities(final String username) {
+        return UserInformation.from(userRepository.findOneWithAuthoritiesByUsername(username).orElse(null));
     }
 
     @Transactional(readOnly = true)
-    public UserResponse getCurrentUserWithAuthorities() {
-        return UserResponse.from(
+    public UserInformation getCurrentUserWithAuthorities() {
+        return UserInformation.from(
                 SecurityUtil.getCurrentUsername()
                         .flatMap(userRepository::findOneWithAuthoritiesByUsername)
                         .orElseThrow(() -> new NotFoundUserException("사용자를 찾을 수 없습니다."))

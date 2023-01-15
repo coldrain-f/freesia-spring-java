@@ -17,6 +17,10 @@ public class Book extends Timestamped {
     @Column(name = "BOOK_ID")
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User author;
+
     @Column(nullable = false)
     private String name;
 
@@ -59,5 +63,9 @@ public class Book extends Timestamped {
 
     public void changeIsDeleted(final Boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public void changeAuthor(final User author) {
+        this.author = author;
     }
 }
