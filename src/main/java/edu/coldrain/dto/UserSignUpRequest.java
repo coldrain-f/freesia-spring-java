@@ -27,7 +27,6 @@ public class UserSignUpRequest {
         return User.builder()
                 .username(this.username)
                 .password(this.password)
-                .email(this.email)
                 .build();
     }
 }

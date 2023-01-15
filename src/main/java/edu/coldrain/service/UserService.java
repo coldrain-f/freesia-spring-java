@@ -23,7 +23,6 @@ public class UserService {
         final String rawPassword = user.getPassword();
         final String encodedPassword = encoder.encode(rawPassword);
 
-        user.changeRole("ROLE_USER");
         user.changePassword(encodedPassword);
 
         return userRepository.save(user).getId();
