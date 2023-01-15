@@ -1,4 +1,4 @@
-package edu.coldrain.exception;
+package edu.coldrain.handler;
 
 import lombok.AccessLevel;
 import lombok.Builder;

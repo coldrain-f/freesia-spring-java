@@ -6,27 +6,37 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserSignUpRequest {
 
+    @NotBlank
+    @Size(min = 3, max = 50)
     private String username;
 
+    @NotBlank
+    @Size(min = 3, max = 100)
     private String password;
 
-    private String email;
+    @NotBlank
+    @Size(min = 5, max = 50)
+    private String nickname;
 
     @Builder
-    public UserSignUpRequest(final String username, final String password, final String email) {
+    public UserSignUpRequest(final String username, final String password, final String nickname) {
         this.username = username;
         this.password = password;
-        this.email = email;
+        this.nickname = nickname;
     }
 
     public User toEntity() {
         return User.builder()
                 .username(this.username)
                 .password(this.password)
+                .nickname(this.nickname)
                 .build();
     }
 }

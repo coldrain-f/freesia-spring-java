@@ -1,6 +1,7 @@
 package edu.coldrain.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,4 +17,9 @@ public class Authority {
     @Id
     @Column(name = "AUTHORITY_NAME", length = 50)
     private String authorityName;
+
+    @Builder
+    public Authority(final String authorityName) {
+        this.authorityName = authorityName;
+    }
 }
