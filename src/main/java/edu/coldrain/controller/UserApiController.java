@@ -26,7 +26,7 @@ public class UserApiController {
     @GetMapping("/users/current")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public UserResponse getCurrentUser() {
-        return userService.getMyUserWithAuthorities();
+        return userService.getCurrentUserWithAuthorities();
     }
 
     @GetMapping("/users/{username}")

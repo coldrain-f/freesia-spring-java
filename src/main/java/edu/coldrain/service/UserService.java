@@ -51,7 +51,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public UserResponse getMyUserWithAuthorities() {
+    public UserResponse getCurrentUserWithAuthorities() {
         return UserResponse.from(
                 SecurityUtil.getCurrentUsername()
                         .flatMap(userRepository::findOneWithAuthoritiesByUsername)
