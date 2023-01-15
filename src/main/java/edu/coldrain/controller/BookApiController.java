@@ -6,8 +6,9 @@ import edu.coldrain.dto.BookUpdateRequest;
 import edu.coldrain.entity.Book;
 import edu.coldrain.service.BookService;
 import edu.coldrain.service.UserService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -17,44 +18,40 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequiredArgsConstructor
-@Slf4j
 @RequestMapping("/api")
+@RequiredArgsConstructor
+@Tag(name = "BOOK", description = "Book Api Controller")
 public class BookApiController {
 
     private final BookService bookService;
 
     private final UserService userService;
 
-    /**
-     * 단어장 등록
-     */
+    @Tag(name = "BOOK")
+    @ApiOperation(value = "단어장 등록 API", notes = "", authorizations = {})
     @PostMapping("/books")
     @ResponseStatus(HttpStatus.CREATED)
     public Long create(@Validated @RequestBody final BookCreateRequest request) {
         return bookService.create(request, userService.getCurrentUserWithAuthorities());
     }
 
-    /**
-     * 단어장 수정
-     */
+    @Tag(name = "BOOK")
+    @ApiOperation(value = "단어장 수정 API", notes = "", authorizations = {})
     @PatchMapping("/books/{id}")
     public void update(final @PathVariable("id") Long bookId,
                        @Validated @RequestBody final BookUpdateRequest request) {
         bookService.update(request, bookId);
     }
 
-    /**
-     * 단어장 삭제
-     */
+    @Tag(name = "BOOK")
+    @ApiOperation(value = "단어장 삭제 API", notes = "", authorizations = {})
     @DeleteMapping("/books/{id}")
     public void delete(final @PathVariable("id") Long bookId) {
         bookService.delete(bookId);
     }
 
-    /**
-     * 단어장 상세 조회
-     */
+    @Tag(name = "BOOK")
+    @ApiOperation(value = "단어장 상세 조회 API", notes = "", authorizations = {})
     @GetMapping("/books/{id}")
     public BookResponse findOne(final @PathVariable("id") Long bookId) {
         final Book book = bookService.findById(bookId);
@@ -64,9 +61,8 @@ public class BookApiController {
                 book.getModifiedAt());
     }
 
-    /**
-     * 단어장 목록 조회 QueryDSL
-     */
+    @Tag(name = "BOOK")
+    @ApiOperation(value = "단어장 목록 조회 API", notes = "", authorizations = {})
     @GetMapping("/books")
     public Page<BookResponse> findAllByQuerydsl(
             @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {

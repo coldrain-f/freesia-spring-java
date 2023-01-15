@@ -24,12 +24,12 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-@Tag(name = "Authentication", description = "Auth Api Controller")
+@Tag(name = "AUTHENTICATION", description = "Auth Api Controller")
 public class AuthApiController {
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
-    @Tag(name = "Authentication")
+    @Tag(name = "AUTHENTICATION")
     @ApiOperation(value = "사용자 인증 API", notes = "", authorizations = {})
     @PostMapping("/authentication/authenticate")
     public ResponseEntity<TokenResponse> authorize(@Valid @RequestBody UserLoginRequest request) {
