@@ -1,6 +1,8 @@
 package edu.coldrain.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
+import edu.coldrain.entity.Book;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -25,6 +27,7 @@ public class BookResponse {
     private final LocalDateTime modifiedAt;
 
     @QueryProjection
+    @Builder
     public BookResponse(final Long id, final String name, final String content, final String language,
                         final String shareStatus, final LocalDateTime createdAt, final LocalDateTime modifiedAt) {
         this.id = id;
@@ -34,5 +37,17 @@ public class BookResponse {
         this.shareStatus = shareStatus;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+    }
+
+    public static BookResponse from(final Book book) {
+        return BookResponse.builder()
+                .id(book.getId())
+                .name(book.getName())
+                .content(book.getContent())
+                .language(book.getLanguage())
+                .shareStatus(book.getShareStatus())
+                .createdAt(book.getCreatedAt())
+                .modifiedAt(book.getModifiedAt())
+                .build();
     }
 }

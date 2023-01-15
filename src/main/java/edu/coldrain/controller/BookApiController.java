@@ -55,10 +55,7 @@ public class BookApiController {
     @GetMapping("/books/{id}")
     public BookResponse findOne(final @PathVariable("id") Long bookId) {
         final Book book = bookService.findById(bookId);
-        return new BookResponse(
-                book.getId(), book.getName(), book.getContent(),
-                book.getLanguage(), book.getShareStatus(), book.getCreatedAt(),
-                book.getModifiedAt());
+        return BookResponse.from(book);
     }
 
     @Tag(name = "BOOK")
