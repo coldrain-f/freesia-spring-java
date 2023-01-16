@@ -1,6 +1,8 @@
 package edu.coldrain.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.QueryProjection;
+import edu.coldrain.common.TimestampedResponse;
 import edu.coldrain.entity.Book;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @ToString
-public class BookResponse {
+public class BookResponse extends TimestampedResponse {
 
     private final Long id;
 
@@ -22,10 +24,6 @@ public class BookResponse {
 
     private final String shareStatus;
 
-    private final LocalDateTime createdAt;
-
-    private final LocalDateTime modifiedAt;
-
     @QueryProjection
     @Builder
     public BookResponse(final Long id, final String name, final String content, final String language,
@@ -35,8 +33,8 @@ public class BookResponse {
         this.content = content;
         this.language = language;
         this.shareStatus = shareStatus;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
+        super.setCreatedAt(createdAt);
+        super.setModifiedAt(modifiedAt);
     }
 
     public static BookResponse from(final Book book) {

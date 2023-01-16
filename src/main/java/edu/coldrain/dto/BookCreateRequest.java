@@ -1,23 +1,22 @@
 package edu.coldrain.dto;
 
 import edu.coldrain.entity.Book;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
 @Getter
 @ToString
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BookCreateRequest {
 
     @NotBlank
-    private final String name;
-    private final String content;
+    private String name;
+    private String content;
     @NotBlank
-    private final String language;
+    private String language;
     @NotBlank
-    private final String shareStatus;
+    private String shareStatus;
 
     @Builder
     public BookCreateRequest(final String name, final String content, final String language, final String shareStatus) {
