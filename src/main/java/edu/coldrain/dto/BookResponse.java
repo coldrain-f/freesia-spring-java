@@ -1,6 +1,5 @@
 package edu.coldrain.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.QueryProjection;
 import edu.coldrain.common.TimestampedResponse;
 import edu.coldrain.entity.Book;
@@ -16,6 +15,8 @@ public class BookResponse extends TimestampedResponse {
 
     private final Long id;
 
+    private final String username;
+
     private final String name;
 
     private final String content;
@@ -26,9 +27,10 @@ public class BookResponse extends TimestampedResponse {
 
     @QueryProjection
     @Builder
-    public BookResponse(final Long id, final String name, final String content, final String language,
+    public BookResponse(final Long id, final String name, final String content, final String language, final String username,
                         final String shareStatus, final LocalDateTime createdAt, final LocalDateTime modifiedAt) {
         this.id = id;
+        this.username = username;
         this.name = name;
         this.content = content;
         this.language = language;
@@ -40,6 +42,7 @@ public class BookResponse extends TimestampedResponse {
     public static BookResponse from(final Book book) {
         return BookResponse.builder()
                 .id(book.getId())
+                .username(book.getAuthor().getUsername())
                 .name(book.getName())
                 .content(book.getContent())
                 .language(book.getLanguage())

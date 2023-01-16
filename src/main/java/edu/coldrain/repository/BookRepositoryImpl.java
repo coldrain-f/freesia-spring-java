@@ -29,6 +29,7 @@ public class BookRepositoryImpl implements BookRepositoryQuerydsl {
                                 book.name,
                                 book.content,
                                 book.language,
+                                book.author.username,
                                 book.shareStatus,
                                 book.createdAt,
                                 book.modifiedAt
@@ -36,6 +37,7 @@ public class BookRepositoryImpl implements BookRepositoryQuerydsl {
                 )
                 .from(book)
                 .where(book.isDeleted.eq(false))
+                .orderBy(book.createdAt.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -57,6 +59,7 @@ public class BookRepositoryImpl implements BookRepositoryQuerydsl {
                                 book.name,
                                 book.content,
                                 book.language,
+                                book.author.username,
                                 book.shareStatus,
                                 book.createdAt,
                                 book.modifiedAt
@@ -67,6 +70,7 @@ public class BookRepositoryImpl implements BookRepositoryQuerydsl {
                         book.isDeleted.eq(false)
                                 .and(book.author.id.eq(userId))
                 )
+                .orderBy(book.createdAt.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
