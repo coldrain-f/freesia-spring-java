@@ -7,4 +7,6 @@ import org.springframework.data.domain.Pageable;
 public interface BookRepositoryQuerydsl {
 
     Page<BookResponse> findAllByQuerydsl(Pageable pageable);
+
+    Page<BookResponse> findMyBook(Pageable pageable, Long userId);
 }

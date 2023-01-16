@@ -70,7 +70,15 @@ public class BookService {
         return book;
     }
 
-    public Page<BookResponse> findAllByQuerydsl(Pageable pageable) {
+    public Page<BookResponse> findAllByQuerydsl(final Pageable pageable) {
         return bookRepository.findAllByQuerydsl(pageable);
+    }
+
+    public Page<BookResponse> findMyBook(final Pageable pageable, final UserInformation currentUserInfo) {
+        final String currentUsername = currentUserInfo.getUsername();
+        final User currentUser = userRepository.findOneWithAuthoritiesByUsername(currentUsername)
+                .orElseThrow(() -> new NotFoundUserException("사용자를 찾을 수 없습니다."));
+
+        return bookRepository.findMyBook(pageable, currentUser.getId());
     }
 }

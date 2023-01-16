@@ -3,6 +3,7 @@ package edu.coldrain.controller;
 import edu.coldrain.dto.BookCreateRequest;
 import edu.coldrain.dto.BookResponse;
 import edu.coldrain.dto.BookUpdateRequest;
+import edu.coldrain.dto.UserInformation;
 import edu.coldrain.entity.Book;
 import edu.coldrain.service.BookService;
 import edu.coldrain.service.UserService;
@@ -64,5 +65,14 @@ public class BookApiController {
     public Page<BookResponse> findAllByQuerydsl(
             @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
         return bookService.findAllByQuerydsl(pageable);
+    }
+
+    @Tag(name = "BOOK")
+    @ApiOperation(value = "내가 생성한 단어장 목록 조회 API", notes = "", authorizations = {})
+    @GetMapping("/books/mine")
+    public Page<BookResponse> findMyBook(
+            @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
+        final UserInformation currentUserInfo = userService.getCurrentUserWithAuthorities();
+        return bookService.findMyBook(pageable, currentUserInfo);
     }
 }

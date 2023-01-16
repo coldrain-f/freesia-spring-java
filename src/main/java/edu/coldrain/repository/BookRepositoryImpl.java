@@ -48,4 +48,37 @@ public class BookRepositoryImpl implements BookRepositoryQuerydsl {
 
         return new PageImpl<>(content, pageable, total);
     }
+
+    @Override
+    public Page<BookResponse> findMyBook(Pageable pageable, Long userId) {
+        final List<BookResponse> content = query.select(
+                        new QBookResponse(
+                                book.id,
+                                book.name,
+                                book.content,
+                                book.language,
+                                book.shareStatus,
+                                book.createdAt,
+                                book.modifiedAt
+                        )
+                )
+                .from(book)
+                .where(
+                        book.isDeleted.eq(false)
+                                .and(book.author.id.eq(userId))
+                )
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        final Long total = query.select(book.count())
+                .from(book)
+                .where(
+                        book.isDeleted.eq(false)
+                                .and(book.author.id.eq(userId))
+                )
+                .fetchOne();
+
+        return new PageImpl<>(content, pageable, total);
+    }
 }
