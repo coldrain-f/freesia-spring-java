@@ -14,6 +14,7 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleIllegalArgumentException(final IllegalArgumentException e) {
+        log.error("handleIllegalArgumentException", e);
         return new ErrorResponse(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
@@ -21,6 +22,7 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleMethodArgumentNotValidException(final MethodArgumentNotValidException e) {
+        log.error("handleMethodArgumentNotValidException", e);
         return new ErrorResponse(HttpStatus.BAD_REQUEST, e.getBindingResult());
     }
 
@@ -28,6 +30,7 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleInternalServerError(final Exception e) {
+        log.error("handleInternalServerError", e);
         return new ErrorResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
