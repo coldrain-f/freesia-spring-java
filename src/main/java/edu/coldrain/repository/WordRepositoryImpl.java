@@ -32,6 +32,7 @@ public class WordRepositoryImpl implements WordRepositoryQuerydsl {
                 )
                 .from(word)
                 .where(word.isDeleted.eq(false))
+                .orderBy(word.createdAt.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
