@@ -32,6 +32,7 @@ public class CategoryRepositoryImpl implements CategoryRepositoryQuerydsl {
                 ).
                 from(category)
                 .where(category.isDeleted.eq(false))
+                .orderBy(category.createdAt.desc())
                 .offset(pageable.getOffset())
                 .limit((pageable.getPageSize()))
                 .fetch();
@@ -60,6 +61,7 @@ public class CategoryRepositoryImpl implements CategoryRepositoryQuerydsl {
                         category.book.id.eq(bookId)
                                 .and(category.isDeleted.eq(false))
                 )
+                .orderBy(category.createdAt.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

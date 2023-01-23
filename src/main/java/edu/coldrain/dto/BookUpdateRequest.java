@@ -1,23 +1,25 @@
 package edu.coldrain.dto;
 
+import lombok.AccessLevel;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-@Getter
-@ToString
+@Data
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BookUpdateRequest {
 
     @NotBlank
-    private final String name;
+    private String name;
+    @NotNull
+    private String content;
     @NotBlank
-    private final String content;
+    private String language;
     @NotBlank
-    private final String language;
-    @NotBlank
-    private final String shareStatus;
+    private String shareStatus;
 
     @Builder
     public BookUpdateRequest(final String name, final String content, final String language, final String shareStatus) {
