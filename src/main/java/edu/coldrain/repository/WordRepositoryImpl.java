@@ -26,6 +26,7 @@ public class WordRepositoryImpl implements WordRepositoryQuerydsl {
                         new QWordResponse(
                                 word.id,
                                 word.name,
+                                word.meaning,
                                 word.createdAt,
                                 word.modifiedAt
                         )
@@ -51,6 +52,7 @@ public class WordRepositoryImpl implements WordRepositoryQuerydsl {
                         new QWordResponse(
                                 word.id,
                                 word.name,
+                                word.meaning,
                                 word.createdAt,
                                 word.modifiedAt
                         )
