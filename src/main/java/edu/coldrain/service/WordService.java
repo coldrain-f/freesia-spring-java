@@ -36,6 +36,7 @@ public class WordService {
     public void update(final Long wordId, final WordUpdateRequest request) {
         final Word word = this.findById(wordId);
         word.changeName(request.getName());
+        word.changeMeaning(request.getMeaning());
     }
 
     @Transactional

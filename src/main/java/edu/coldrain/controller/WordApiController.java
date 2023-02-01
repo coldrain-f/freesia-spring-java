@@ -7,6 +7,7 @@ import edu.coldrain.service.WordService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -29,6 +31,7 @@ public class WordApiController {
     @ResponseStatus(HttpStatus.CREATED)
     public Long create(@PathVariable("id") final Long categoryId,
                        @Validated @RequestBody final WordCreateRequest request) {
+        log.info("특정 카테고리에 단어 등록 API");
         return wordService.create(request, categoryId);
     }
 

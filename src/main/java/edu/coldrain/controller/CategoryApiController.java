@@ -3,10 +3,12 @@ package edu.coldrain.controller;
 import edu.coldrain.dto.CategoryCreateRequest;
 import edu.coldrain.dto.CategoryResponse;
 import edu.coldrain.dto.CategoryUpdateRequest;
+import edu.coldrain.entity.Category;
 import edu.coldrain.service.CategoryService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -53,6 +56,17 @@ public class CategoryApiController {
     public Page<CategoryResponse> findAllByQuerydsl(
             @PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC) final Pageable pageable) {
         return categoryService.findAllByQuerydsl(pageable);
+    }
+
+    @Tag(name = "CATEGORY")
+    @ApiOperation(value = "특정 카테고리 조회 API", notes = "", authorizations = {})
+    @GetMapping("/categories/{id}")
+    public CategoryResponse findById(@PathVariable("id") final Long categoryId) {
+        final Category category = categoryService.findById(categoryId);
+        return CategoryResponse.builder()
+                .id(category.getId())
+                .name(category.getName())
+                .build();
     }
 
     @Tag(name = "CATEGORY")
