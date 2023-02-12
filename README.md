@@ -18,18 +18,27 @@
 ![Redis](https://img.shields.io/badge/Redis-DC382D.svg?&style=for-the-badge&logo=Redis&logoColor=white)
 ![Swagger](https://img.shields.io/badge/Swagger-85EA2D.svg?&style=for-the-badge&logo=Swagger&logoColor=white)
 
+<br />
+
 ### - COLLABORATION & TOOLS 
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ%20IDEA-0071C5.svg?&style=for-the-badge&logo=IntelliJ%20IDEA&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032.svg?&style=for-the-badge&logo=Git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717.svg?&style=for-the-badge&logo=GitHub&logoColor=white)
 ![Notion](https://img.shields.io/badge/Notion-000000.svg?&style=for-the-badge&logo=Notion&logoColor=white)
 
+<br />
+
+## API 명세서
+[포스트맨 API 명세서 바로가기](https://documenter.getpostman.com/view/15230748/2s935uGfnN)
+
+<br />
+
 ## 사용자 페이지 주요 기능
 ### 단어장 목록
-![image](https://user-images.githubusercontent.com/81298415/218343436-4012eece-5db9-4612-9414-682388523671.png) <br />
+![image](https://user-images.githubusercontent.com/81298415/218343436-4012eece-5db9-4612-9414-682388523671.png) 
 
 ### 단어장 상세 페이지
-![image](https://user-images.githubusercontent.com/81298415/218343510-eadcc95d-06c0-419b-a414-024ef6f794aa.png) <br />
+![image](https://user-images.githubusercontent.com/81298415/218343510-eadcc95d-06c0-419b-a414-024ef6f794aa.png)
 
 ### 단어장 학습하기
 ![image](https://user-images.githubusercontent.com/81298415/218343544-98b2c9df-668f-4738-bed1-1daa5ffa671b.png)
