@@ -2,6 +2,7 @@ package edu.coldrain.entity;
 
 import edu.coldrain.common.Timestamped;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,4 +25,18 @@ public class Learn extends Timestamped {
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
+
+    @Builder
+    public Learn(final User user, final Category category) {
+        this.user = user;
+        this.category = category;
+    }
+
+    public void changeUser(final User user) {
+        this.user = user;
+    }
+
+    public void changeCategory(final Category category) {
+        this.category = category;
+    }
 }
