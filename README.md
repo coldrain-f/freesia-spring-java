@@ -1,7 +1,8 @@
 # 단어장 학습 프로젝트 - 프리지아
 
 ## ERD(Entity Relationship Diagram)
-![Untitled (3)](https://user-images.githubusercontent.com/81298415/218312662-61578e78-6487-43c5-bb74-6b0ad80468a7.png)
+![Untitled (5)](https://user-images.githubusercontent.com/81298415/219400620-7a41eb53-0b82-4c1b-b834-4aed08750ae5.png)
+
 
 
 
