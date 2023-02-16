@@ -5,9 +5,11 @@ import edu.coldrain.dto.BookResponse;
 import edu.coldrain.dto.BookUpdateRequest;
 import edu.coldrain.dto.UserInformation;
 import edu.coldrain.entity.Book;
+import edu.coldrain.entity.Learn;
 import edu.coldrain.entity.User;
 import edu.coldrain.exception.NotFoundUserException;
 import edu.coldrain.repository.BookRepository;
+import edu.coldrain.repository.LearnRepository;
 import edu.coldrain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,8 @@ public class BookService {
     private final BookRepository bookRepository;
 
     private final UserRepository userRepository;
+
+    private final LearnRepository learnRepository;
 
     @Transactional
     public Long create(final BookCreateRequest request, final UserInformation currentUser) {
@@ -80,5 +84,24 @@ public class BookService {
                 .orElseThrow(() -> new NotFoundUserException("사용자를 찾을 수 없습니다."));
 
         return bookRepository.findMyBook(pageable, currentUser.getId());
+    }
+
+    @Transactional
+    public Long learn(final Long bookId, final UserInformation currentUserInfo) {
+        final User currentUser = userRepository.findOneWithAuthoritiesByUsername(currentUserInfo.getUsername())
+                .orElseThrow(() -> new NotFoundUserException("사용자를 찾을 수 없습니다."));
+        final Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new IllegalArgumentException("단어장을 찾을 수 없습니다."));
+
+        // 사용자 번호와 단어장 번호로 조회해서 있으면 예외 발생 - 이미 학습중인데 학습하려고 했기 때문.
+        learnRepository.findByUserIdAndBookId(currentUser.getId(), book.getId());
+
+        final Learn learn = Learn.builder()
+                .user(currentUser)
+                .book(book)
+                .build();
+
+        final Learn savedLearn = learnRepository.save(learn);
+        return savedLearn.getId();
     }
 }

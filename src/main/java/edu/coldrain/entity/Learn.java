@@ -23,13 +23,13 @@ public class Learn extends Timestamped {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "CATEGORY_ID")
-    private Category category;
+    @JoinColumn(name = "BOOK_ID")
+    private Book book;
 
     @Builder
-    public Learn(final User user, final Category category) {
+    public Learn(final User user, final Book book) {
         this.user = user;
-        this.category = category;
+        this.book = book;
     }
 
     public void changeUser(final User user) {
@@ -37,6 +37,6 @@ public class Learn extends Timestamped {
     }
 
     public void changeCategory(final Category category) {
-        this.category = category;
+        this.book = book;
     }
 }

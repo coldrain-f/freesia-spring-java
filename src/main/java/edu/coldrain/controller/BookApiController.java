@@ -78,4 +78,13 @@ public class BookApiController {
         final UserInformation currentUserInfo = userService.getCurrentUserWithAuthorities();
         return bookService.findMyBook(pageable, currentUserInfo);
     }
+
+    /**
+     * 특정 단어장 학습 시작 API
+     */
+    @PostMapping("/books/{id}/learn")
+    public Long learn(@PathVariable("id") final Long bookId) {
+        final UserInformation currentUserInfo = userService.getCurrentUserWithAuthorities();
+        return bookService.learn(bookId, currentUserInfo);
+    }
 }
